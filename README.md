@@ -1,4 +1,4 @@
-# Sul na Urna v2
+# Sul na Urna v4
 
 Versão reconstruída a partir do HTML original e da planilha oficial de perfil do eleitor.
 
@@ -27,3 +27,14 @@ A página pública já funciona com os dados locais. O admin abre em **modo demo
 A base usada soma **817.875 eleitores** nas 3 regiões (AMREC 339.968, AMUREL 301.390, AMESC 176.517), conforme a planilha enviada. A versão antiga da página mostrava 817.915; esta versão segue a planilha consolidada.
 
 Campos com alta taxa de “NÃO INFORMADO” exibem aviso de cobertura antes da interpretação.
+
+
+## Ajustes v4
+- Logos HN Notícias e Vertical FM maiores e centralizadas.
+- Lista pública padronizada sem exibir nome completo.
+- Campo `candidate_number` preparado para o número eleitoral; permanece vazio até conferência oficial.
+- Delegado Ulisses Gabriel exibido apenas na AMREC.
+- Observação pública da Victoria Salgado removida.
+- Botão “Informar uma correção” com formulário (nome, contato e mensagem).
+- Nova aba “Correções” no admin. Com Supabase configurado, as mensagens entram na tabela `feedback`.
+- `schema.sql` atualizado com tabela `feedback`, RLS e coluna `candidate_number`.
