@@ -1,7 +1,7 @@
-// Preencha apenas depois de criar o projeto no Supabase.
-// A chave ANON/PUBLISHABLE pode ficar no front-end; nunca use service_role aqui.
+// Configuracao de producao do Sul na Urna.
+// A chave publishable pode ficar no front-end; nunca use service_role aqui.
 window.SUL_NA_URNA_CONFIG = {
-  supabaseUrl: '',
-  supabaseAnonKey: '',
+  supabaseUrl: 'https://hajexgvtdnfldqkrrcsb.supabase.co',
+  supabaseAnonKey: 'sb_publishable_Mh5ocgLqlcIPPT2HvwYATg_-7LH3ZRt',
   mediaBucket: 'sul-na-urna-media'
 };
