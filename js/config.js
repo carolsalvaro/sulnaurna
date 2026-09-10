@@ -3,5 +3,5 @@
 window.SUL_NA_URNA_CONFIG = {
   supabaseUrl: 'https://hajexgvtdnfldqkrrcsb.supabase.co',
   supabaseAnonKey: 'sb_publishable_Mh5ocgLqlcIPPT2HvwYATg_-7LH3ZRt',
-  mediaBucket: 'sulnaurna'
+  mediaBucket: 'sul-na-urna-media'
 };
