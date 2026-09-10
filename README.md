@@ -32,9 +32,15 @@ Campos com alta taxa de “NÃO INFORMADO” exibem aviso de cobertura antes da 
 ## Ajustes v4
 - Logos HN Notícias e Vertical FM maiores e centralizadas.
 - Lista pública padronizada sem exibir nome completo.
-- Campo `candidate_number` preparado para o número eleitoral; permanece vazio até conferência oficial.
+- Campo `candidate_number` preenchido para os 63 candidatos com os números de urna de 2026 conferidos em listas publicadas a partir dos dados oficiais do TSE.
 - Delegado Ulisses Gabriel exibido apenas na AMREC.
 - Observação pública da Victoria Salgado removida.
 - Botão “Informar uma correção” com formulário (nome, contato e mensagem).
 - Nova aba “Correções” no admin. Com Supabase configurado, as mensagens entram na tabela `feedback`.
 - `schema.sql` atualizado com tabela `feedback`, RLS e coluna `candidate_number`.
+
+## Números de urna
+- 63 candidatos com número eleitoral preenchido.
+- Deputado federal: 4 dígitos.
+- Deputado estadual: 5 dígitos.
+- O número aparece na listagem pública e pode ser editado no admin.
