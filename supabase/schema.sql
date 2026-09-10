@@ -1,0 +1,22 @@
+create extension if not exists pgcrypto;
+create table if not exists public.admin_users (user_id uuid primary key references auth.users(id) on delete cascade, created_at timestamptz not null default now());
+create or replace function public.is_sul_na_urna_admin() returns boolean language sql stable security definer set search_path=public as $$ select exists(select 1 from public.admin_users where user_id=auth.uid()); $$;
+revoke all on function public.is_sul_na_urna_admin() from public; grant execute on function public.is_sul_na_urna_admin() to anon, authenticated;
+create table if not exists public.candidates (id uuid primary key default gen_random_uuid(), name text not null, full_name text not null default '', party text not null, office text not null check(office in('federal','estadual')), region text not null check(region in('AMREC','AMESC','AMUREL')), regions text[] not null default '{}', city text not null default '', tse_url text not null, photo_url text not null default '', review_note text not null default '', active boolean not null default true, sort_order integer not null default 0, updated_at timestamptz not null default now());
+create table if not exists public.articles (id uuid primary key default gen_random_uuid(), title text not null, url text not null, image_url text not null default '', active boolean not null default true, sort_order integer not null default 0, updated_at timestamptz not null default now());
+create table if not exists public.banners (id uuid primary key default gen_random_uuid(), slot text not null check(slot in('topo','meio')), name text not null default '', link_url text not null default '', image_url text not null default '', alt_text text not null default '', active boolean not null default true, sort_order integer not null default 0, updated_at timestamptz not null default now());
+alter table public.candidates enable row level security; alter table public.articles enable row level security; alter table public.banners enable row level security; alter table public.admin_users enable row level security;
+create policy "public reads active candidates" on public.candidates for select to anon,authenticated using(active=true or public.is_sul_na_urna_admin());
+create policy "admins manage candidates" on public.candidates for all to authenticated using(public.is_sul_na_urna_admin()) with check(public.is_sul_na_urna_admin());
+create policy "public reads active articles" on public.articles for select to anon,authenticated using(active=true or public.is_sul_na_urna_admin());
+create policy "admins manage articles" on public.articles for all to authenticated using(public.is_sul_na_urna_admin()) with check(public.is_sul_na_urna_admin());
+create policy "public reads active banners" on public.banners for select to anon,authenticated using(active=true or public.is_sul_na_urna_admin());
+create policy "admins manage banners" on public.banners for all to authenticated using(public.is_sul_na_urna_admin()) with check(public.is_sul_na_urna_admin());
+create policy "admin sees own admin row" on public.admin_users for select to authenticated using(user_id=auth.uid());
+insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types) values('sul-na-urna-media','sul-na-urna-media',true,5242880,array['image/jpeg','image/png','image/webp','image/gif']) on conflict(id) do update set public=true;
+create policy "public reads sul na urna media" on storage.objects for select to public using(bucket_id='sul-na-urna-media');
+create policy "admins upload sul na urna media" on storage.objects for insert to authenticated with check(bucket_id='sul-na-urna-media' and public.is_sul_na_urna_admin());
+create policy "admins update sul na urna media" on storage.objects for update to authenticated using(bucket_id='sul-na-urna-media' and public.is_sul_na_urna_admin()) with check(bucket_id='sul-na-urna-media' and public.is_sul_na_urna_admin());
+create policy "admins delete sul na urna media" on storage.objects for delete to authenticated using(bucket_id='sul-na-urna-media' and public.is_sul_na_urna_admin());
+-- Depois de criar o usuário no Authentication > Users, libere o painel substituindo o UUID abaixo:
+-- insert into public.admin_users(user_id) values ('COLE-AQUI-O-UUID-DO-USUARIO');
