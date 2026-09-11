@@ -316,10 +316,13 @@ img {
 /* ALTERADO: fundo um pouco mais escuro para destacar os filtros */
 .toggle {
   display:inline-flex;
-  background:#E2E7F1;
+  background:#D8DFEB;
+  border:1px solid #CCD5E4;
   border-radius:9px;
   padding:4px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
+  box-shadow:0 0 0 0 rgba(28,95,214,.10);
+  animation:togglePulse 2.8s ease-in-out infinite;
 }
 
 .toggle button {
@@ -1116,5 +1119,25 @@ select:focus-visible {
 
   .story-card {
     transition:none
+  }
+}
+@keyframes togglePulse {
+  0% {
+    background:#D8DFEB;
+    box-shadow:0 0 0 0 rgba(28,95,214,.08);
+  }
+  50% {
+    background:#CDD7E8;
+    box-shadow:0 4px 14px rgba(28,95,214,.10);
+  }
+  100% {
+    background:#D8DFEB;
+    box-shadow:0 0 0 0 rgba(28,95,214,.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle {
+    animation:none;
   }
 }
