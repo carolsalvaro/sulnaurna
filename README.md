@@ -44,3 +44,11 @@ Campos com alta taxa de “NÃO INFORMADO” exibem aviso de cobertura antes da 
 - Deputado federal: 4 dígitos.
 - Deputado estadual: 5 dígitos.
 - O número aparece na listagem pública e pode ser editado no admin.
+
+
+## v7.2
+- Corrige posicionamento dos banners rotativos: cada slot fica contido em seu próprio bloco 1200x250.
+- Topo e meio rotacionam independentemente.
+- Banner único também permanece dentro do slot correto.
+- Cache-busting em CSS/JS para evitar navegador servindo versão antiga.
+- Nenhuma alteração em schema, seed ou dados do Supabase.

@@ -127,6 +127,7 @@ img {
   max-width:1256px
 }
 .sponsor-banner {
+  position:relative;
   max-width:1200px;
   width:100%;
   aspect-ratio:24/5;
@@ -136,7 +137,7 @@ img {
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:0 20px;
+  padding:0;
   overflow:hidden
 }
 .sponsor-banner:not(.has-image) {
@@ -153,9 +154,6 @@ img {
   width:100%;
   height:100%
 }
-.sponsor-banner.has-rotation {
-  position:relative
-}
 .sponsor-banner .banner-slide {
   position:absolute;
   inset:0;
@@ -170,7 +168,7 @@ img {
 .sponsor-banner img {
   width:100%;
   height:100%;
-  object-fit:cover
+  object-fit:contain
 }
 .cand-meta .cand-number {
   font-weight:700
