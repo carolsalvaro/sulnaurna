@@ -4,10 +4,27 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
   <title>
-   Sul na Urna — HN Notícias + Vertical FM
+   Sul na Urna &mdash; HN Not&iacute;cias + Vertical FM
   </title>
-  <meta content="Sul na Urna: candidatos a deputado e perfil do eleitor da AMREC, AMESC e AMUREL nas Eleições 2026." name="description"/>
-  <link href="css/site.css?v=7.2" rel="stylesheet"/>
+  <meta content="Sul na Urna: candidatos a deputado federal e estadual da AMREC, AMESC e AMUREL, perfil do eleitor e hist&oacute;rias das Elei&ccedil;&otilde;es 2026." name="description"/>
+  <link href="https://sulnaurna.hnnoticias.com.br/" rel="canonical"/>
+  <meta content="pt_BR" property="og:locale"/>
+  <meta content="website" property="og:type"/>
+  <meta content="Sul na Urna &mdash; HN Not&iacute;cias + R&aacute;dio Vertical FM" property="og:site_name"/>
+  <meta content="Sul na Urna | Elei&ccedil;&otilde;es 2026 no Sul de Santa Catarina" property="og:title"/>
+  <meta content="Candidatos, perfil do eleitor e hist&oacute;rias das elei&ccedil;&otilde;es na AMREC, AMESC e AMUREL." property="og:description"/>
+  <meta content="https://sulnaurna.hnnoticias.com.br/" property="og:url"/>
+  <meta content="https://sulnaurna.netlify.app/assets/social-share.jpg" property="og:image"/>
+  <meta content="https://sulnaurna.netlify.app/assets/social-share.jpg" property="og:image:secure_url"/>
+  <meta content="image/jpeg" property="og:image:type"/>
+  <meta content="1200" property="og:image:width"/>
+  <meta content="630" property="og:image:height"/>
+  <meta content="Sul na Urna &mdash; Elei&ccedil;&otilde;es 2026 no Sul de Santa Catarina" property="og:image:alt"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="Sul na Urna | Elei&ccedil;&otilde;es 2026 no Sul de Santa Catarina" name="twitter:title"/>
+  <meta content="Candidatos, perfil do eleitor e hist&oacute;rias das elei&ccedil;&otilde;es na AMREC, AMESC e AMUREL." name="twitter:description"/>
+  <meta content="https://sulnaurna.netlify.app/assets/social-share.jpg" name="twitter:image"/>
+  <link href="css/site.css?v=7.3" rel="stylesheet"/>
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VZYMP84YWY">
   </script>
   <script>
@@ -18,16 +35,24 @@ function gtag() {
 }
 
 gtag('js', new Date());
+
+// Envia a visualização explicitamente para evitar dúvida sobre page_view automático.
 gtag('config', 'G-VZYMP84YWY', {
-  cookie_domain: 'auto'
+  send_page_view: false
 });
 
-// Evento simples de diagnóstico. Deve aparecer no Tempo real como
-// "sul_na_urna_loaded" quando o Google Analytics estiver recebendo dados.
-gtag('event', 'sul_na_urna_loaded', {
+gtag('event', 'page_view', {
   page_title: document.title,
   page_location: window.location.href,
   page_path: window.location.pathname
+});
+
+// Evento de diagnóstico. Também pode ser visto no DebugView do GA4.
+gtag('event', 'sul_na_urna_loaded', {
+  page_title: document.title,
+  page_location: window.location.href,
+  page_path: window.location.pathname,
+  debug_mode: true
 });
 
 function trackEvent(name, params) {
@@ -39,14 +64,21 @@ function trackEvent(name, params) {
     console.warn('Falha ao registrar evento no Google Analytics:', error);
   }
 }
+
+window.addEventListener('load', function () {
+  window.setTimeout(function () {
+    var loaded = Boolean(window.google_tag_manager);
+    console.info('[Sul na Urna] Google Analytics:', loaded ? 'tag carregada' : 'tag não detectada');
+  }, 2000);
+});
   </script>
  </head>
  <body>
   <header class="topbar">
    <div class="wrap">
     <div class="brand">
-     <a aria-label="Abrir HN Notícias" class="brand-link" href="https://hnnoticias.com.br/" rel="noopener noreferrer" target="_blank">
-      <img alt="HN Notícias" class="hn" src="assets/brand/hn.png"/>
+     <a aria-label="Abrir HN Not&iacute;cias" class="brand-link" href="https://hnnoticias.com.br/" rel="noopener noreferrer" target="_blank">
+      <img alt="HN Not&iacute;cias" class="hn" src="assets/brand/hn.png"/>
      </a>
      <span class="plus">
       +
@@ -63,14 +95,14 @@ function trackEvent(name, params) {
       Perfil do eleitor
      </a>
      <a class="hide-mobile" href="#historias">
-      Histórias
+      Hist&oacute;rias
      </a>
      <a class="btn-cta" href="https://hnnoticias.com.br/eleicoes-hn" id="ctaHeader">
       <span class="full">
-       Central das Eleições 2026
+       Central das Elei&ccedil;&otilde;es 2026
       </span>
       <span class="short">
-       Central Eleições
+       Central Elei&ccedil;&otilde;es
       </span>
      </a>
     </nav>
@@ -80,7 +112,7 @@ function trackEvent(name, params) {
    <div class="wrap">
     <div class="sponsor-banner" id="sponsorBanner">
      <span>
-      Espaço reservado para o banner do patrocinador — 1200 × 250px
+      Espa&ccedil;o reservado para o banner do patrocinador &mdash; 1200 &times; 250px
      </span>
     </div>
    </div>
@@ -88,7 +120,7 @@ function trackEvent(name, params) {
   <section class="hero">
    <div class="wrap">
     <p class="kicker">
-     SUL NA URNA · AMREC + AMESC + AMUREL
+     SUL NA URNA &middot; AMREC + AMESC + AMUREL
     </p>
     <h1>
      Quem disputa o seu voto
@@ -98,12 +130,12 @@ function trackEvent(name, params) {
      , aqui no Sul de Santa Catarina.
     </h1>
     <p class="lede">
-     Uma lista organizada por região dos candidatos a deputado federal e estadual da AMREC, da AMESC e da AMUREL. Clique em qualquer nome para consultar os dados oficiais da candidatura no TSE.
+     Uma lista organizada por regi&atilde;o dos candidatos a deputado federal e estadual da AMREC, da AMESC e da AMUREL. Clique em qualquer nome para consultar os dados oficiais da candidatura no TSE.
     </p>
     <div class="stats">
      <div class="stat">
       <div class="num" id="statTotal">
-       —
+       &mdash;
       </div>
       <div class="lab">
        candidatos listados
@@ -114,7 +146,7 @@ function trackEvent(name, params) {
        3
       </div>
       <div class="lab">
-       regiões — AMREC, AMESC e AMUREL
+       regi&otilde;es &mdash; AMREC, AMESC e AMUREL
       </div>
      </div>
      <div class="stat">
@@ -122,7 +154,7 @@ function trackEvent(name, params) {
        2
       </div>
       <div class="lab">
-       cargos — federal e estadual
+       cargos &mdash; federal e estadual
       </div>
      </div>
     </div>
@@ -132,10 +164,10 @@ function trackEvent(name, params) {
    <div class="wrap">
     <div class="section-head">
      <h2>
-      Candidatos por região
+      Candidatos por regi&atilde;o
      </h2>
      <p>
-      Escolha o cargo e a região para filtrar a lista. Cada candidato abre em uma nova aba, diretamente na página oficial de candidatura no TSE.
+      Escolha o cargo e a regi&atilde;o para filtrar a lista. Cada candidato abre em uma nova aba, diretamente na p&aacute;gina oficial de candidatura no TSE.
      </p>
     </div>
     <div class="toggle-row">
@@ -151,7 +183,7 @@ function trackEvent(name, params) {
         Deputado Estadual
        </button>
       </div>
-      <div aria-label="Filtrar por região" class="toggle" id="regionToggle" role="tablist">
+      <div aria-label="Filtrar por regi&atilde;o" class="toggle" id="regionToggle" role="tablist">
       </div>
      </div>
      <div class="result-count" id="resultCount">
@@ -162,14 +194,14 @@ function trackEvent(name, params) {
     <div class="correction-callout">
      <div>
       <strong>
-       Encontrou alguma informação incorreta ou desatualizada?
+       Encontrou alguma informa&ccedil;&atilde;o incorreta ou desatualizada?
       </strong>
       <span>
-       Avise a equipe do Sul na Urna para que possamos conferir e, se necessário, corrigir.
+       Avise a equipe do Sul na Urna para que possamos conferir e, se necess&aacute;rio, corrigir.
       </span>
      </div>
      <button class="feedback-btn" id="openFeedback" type="button">
-      Informar uma correção
+      Informar uma corre&ccedil;&atilde;o
      </button>
     </div>
    </div>
@@ -181,7 +213,7 @@ function trackEvent(name, params) {
       Perfil do eleitor
      </h2>
      <p>
-      Explore os dados oficiais do eleitorado da AMREC, AMUREL e AMESC. Selecione uma região e o indicador que deseja analisar para visualizar quantidades, percentuais e a comparação com Santa Catarina.
+      Explore os dados oficiais do eleitorado da AMREC, AMUREL e AMESC. Selecione uma regi&atilde;o e o indicador que deseja analisar para visualizar quantidades, percentuais e a compara&ccedil;&atilde;o com Santa Catarina.
      </p>
     </div>
     <div class="profile-summary">
@@ -190,7 +222,7 @@ function trackEvent(name, params) {
        817.875
       </strong>
       <span>
-       eleitores nas 3 regiões
+       eleitores nas 3 regi&otilde;es
       </span>
      </div>
      <div class="profile-kpi">
@@ -198,7 +230,7 @@ function trackEvent(name, params) {
        45
       </strong>
       <span>
-       municípios analisados
+       munic&iacute;pios analisados
       </span>
      </div>
      <div class="profile-kpi">
@@ -214,11 +246,11 @@ function trackEvent(name, params) {
      <div class="profile-controls">
       <div class="field">
        <label for="profileRegion">
-        Região
+        Regi&atilde;o
        </label>
        <select id="profileRegion">
-        <option value="3 REGIÕES">
-         3 regiões
+        <option value="3 REGI&Otilde;ES">
+         3 regi&otilde;es
         </option>
         <option value="AMREC">
          AMREC
@@ -240,16 +272,16 @@ function trackEvent(name, params) {
        </label>
        <select id="profileMetric">
         <option value="overview">
-         Visão geral
+         Vis&atilde;o geral
         </option>
         <option value="municipalities">
-         Eleitorado por município
+         Eleitorado por munic&iacute;pio
         </option>
-        <option value="Gênero">
-         Gênero
+        <option value="G&ecirc;nero">
+         G&ecirc;nero
         </option>
-        <option value="Faixa etária">
-         Faixa etária
+        <option value="Faixa et&aacute;ria">
+         Faixa et&aacute;ria
         </option>
         <option value="Escolaridade">
          Escolaridade
@@ -257,17 +289,17 @@ function trackEvent(name, params) {
         <option value="Estado civil">
          Estado civil
         </option>
-        <option value="Raça-cor">
-         Raça/cor
+        <option value="Ra&ccedil;a-cor">
+         Ra&ccedil;a/cor
         </option>
-        <option value="Identidade gênero">
-         Identidade de gênero
+        <option value="Identidade g&ecirc;nero">
+         Identidade de g&ecirc;nero
         </option>
         <option value="Quilombola">
-         Identificação quilombola
+         Identifica&ccedil;&atilde;o quilombola
         </option>
         <option value="Libras">
-         Intérprete de Libras
+         Int&eacute;rprete de Libras
         </option>
         <option value="indicators">
          Biometria e outros indicadores
@@ -283,7 +315,7 @@ function trackEvent(name, params) {
      <strong>
       perfil_eleitor_secao_2026_SC.csv
      </strong>
-     , gerado em 14/07/2026 às 18:03:23. Percentuais são calculados sobre o total de eleitores da região selecionada.
+     , gerado em 14/07/2026 &agrave;s 18:03:23. Percentuais s&atilde;o calculados sobre o total de eleitores da regi&atilde;o selecionada.
     </p>
    </div>
   </section>
@@ -291,7 +323,7 @@ function trackEvent(name, params) {
    <div class="wrap">
     <div class="sponsor-banner" id="sponsorBannerMeio">
      <span>
-      Espaço reservado para o banner do patrocinador — 1200 × 250px
+      Espa&ccedil;o reservado para o banner do patrocinador &mdash; 1200 &times; 250px
      </span>
     </div>
    </div>
@@ -300,10 +332,10 @@ function trackEvent(name, params) {
    <div class="wrap">
     <div class="section-head">
      <h2>
-      Histórias das Eleições
+      Hist&oacute;rias das Elei&ccedil;&otilde;es
      </h2>
      <p>
-      Reportagens sobre fatos, curiosidades e marcos das eleições no Brasil e em Santa Catarina. Clique na foto ou no título para abrir a matéria completa no HN Notícias.
+      Reportagens sobre fatos, curiosidades e marcos das elei&ccedil;&otilde;es no Brasil e em Santa Catarina. Clique na foto ou no t&iacute;tulo para abrir a mat&eacute;ria completa no HN Not&iacute;cias.
      </p>
     </div>
     <div class="story-grid" id="storyGrid">
@@ -313,10 +345,10 @@ function trackEvent(name, params) {
   <section class="backcta">
    <div class="wrap">
     <p>
-     Quer acompanhar apuração, análises e a cobertura completa das eleições 2026?
+     Quer acompanhar apura&ccedil;&atilde;o, an&aacute;lises e a cobertura completa das elei&ccedil;&otilde;es 2026?
     </p>
     <a class="btn-cta" href="https://hnnoticias.com.br/eleicoes-hn" id="ctaFooter">
-     Ir para a Central das Eleições 2026
+     Ir para a Central das Elei&ccedil;&otilde;es 2026
     </a>
    </div>
   </section>
@@ -324,7 +356,7 @@ function trackEvent(name, params) {
    <div class="wrap">
     <div class="flock">
      <a href="https://hnnoticias.com.br/" rel="noopener noreferrer" target="_blank">
-      <img alt="HN Notícias" class="hn" src="assets/brand/hn.png"/>
+      <img alt="HN Not&iacute;cias" class="hn" src="assets/brand/hn.png"/>
      </a>
      <span class="plus">
       +
@@ -334,7 +366,7 @@ function trackEvent(name, params) {
      </a>
     </div>
     <span class="tag">
-     Sul na Urna — HN Notícias + Rádio Vertical FM · Projeto Especial Eleições 2026
+     Sul na Urna &mdash; HN Not&iacute;cias + R&aacute;dio Vertical FM &middot; Projeto Especial Elei&ccedil;&otilde;es 2026
     </span>
    </div>
   </footer>
@@ -343,14 +375,14 @@ function trackEvent(name, params) {
     <div class="feedback-head">
      <div>
       <h3 id="feedbackTitle">
-       Informar uma correção
+       Informar uma corre&ccedil;&atilde;o
       </h3>
       <p>
-       Se encontrou alguma informação que precisa ser conferida, envie os detalhes para nossa equipe.
+       Se encontrou alguma informa&ccedil;&atilde;o que precisa ser conferida, envie os detalhes para nossa equipe.
       </p>
      </div>
      <button aria-label="Fechar" class="feedback-close" id="closeFeedback" type="button">
-      ×
+      &times;
      </button>
     </div>
     <form id="feedbackForm">
@@ -370,7 +402,7 @@ function trackEvent(name, params) {
       <label for="feedbackMessage">
        Mensagem
       </label>
-      <textarea id="feedbackMessage" maxlength="2000" name="message" placeholder="Conte o que encontrou e, se possível, informe o nome do candidato ou a seção da página." required=""></textarea>
+      <textarea id="feedbackMessage" maxlength="2000" name="message" placeholder="Conte o que encontrou e, se poss&iacute;vel, informe o nome do candidato ou a se&ccedil;&atilde;o da p&aacute;gina." required=""></textarea>
      </div>
      <div aria-hidden="true" class="feedback-hp">
       <label>
@@ -401,8 +433,7 @@ function trackEvent(name, params) {
   </script>
   <script src="js/data-service.js">
   </script>
-  <script src="js/app.js?v=7.2">
+  <script src="js/app.js?v=7.3">
   </script>
  </body>
 </html>
-
