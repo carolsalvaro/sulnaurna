@@ -30,7 +30,114 @@ function renderCandidates(){
 
 function placeholderImage(i){const colors=[['#1C5FD6','#0B1E3D'],['#2E9E52','#123B7A'],['#4E8FF5','#0B1E3D']][i%3];const svg=`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='${colors[0]}'/><stop offset='1' stop-color='${colors[1]}'/></linearGradient></defs><rect width='400' height='250' fill='url(#g)'/><text x='200' y='128' fill='white' opacity='.8' text-anchor='middle' font-family='Arial' font-size='20'>HN Notícias</text></svg>`;return 'data:image/svg+xml;utf8,'+encodeURIComponent(svg)}
 function renderStories(){const grid=document.getElementById('storyGrid');grid.innerHTML=HISTORIAS.map((h,i)=>`<a class="story-card" href="${esc(h.url)}" target="_blank" rel="noopener noreferrer" data-story="${i}"><img class="story-photo" src="${esc(h.image_url||placeholderImage(i))}" alt="" loading="lazy"><span class="story-title">${esc(h.title)}</span></a>`).join('');grid.querySelectorAll('[data-story]').forEach(a=>a.addEventListener('click',()=>trackEvent('clique_materia',{materia_titulo:HISTORIAS[Number(a.dataset.story)].title,materia_posicao:Number(a.dataset.story)+1})))}
-function renderBanners(){const map={topo:'sponsorBanner',meio:'sponsorBannerMeio'};Object.entries(map).forEach(([slot,id])=>{const box=document.getElementById(id),b=BANNERS.find(x=>x.slot===slot&&x.active!==false&&x.image_url);if(!b){box.classList.remove('has-image');return}const href=b.link_url||'#';box.classList.add('has-image');box.innerHTML=`<a href="${esc(href)}" ${b.link_url?'target="_blank" rel="noopener noreferrer"':''} data-banner="${slot}"><img src="${esc(b.image_url)}" alt="${esc(b.alt_text||b.name||'Patrocinador')}"></a>`;box.querySelector('a').addEventListener('click',e=>{if(!b.link_url)e.preventDefault();trackEvent('clique_banner_patrocinador',{posicao:slot,nome:b.name||''})})})}
+const bannerRotations = new Map();
+
+function renderBanners() {
+  const slots = {
+    topo: 'sponsorBanner',
+    meio: 'sponsorBannerMeio'
+  };
+
+  Object.entries(slots).forEach(([slot, elementId]) => {
+    const box = document.getElementById(elementId);
+    if (!box) return;
+
+    const previousRotation = bannerRotations.get(slot);
+    if (previousRotation) {
+      clearInterval(previousRotation.timer);
+      bannerRotations.delete(slot);
+    }
+
+    const banners = BANNERS
+      .filter(banner => banner.slot === slot && banner.active !== false && banner.image_url)
+      .sort((a, b) => Number(a.sort_order || 0) - Number(b.sort_order || 0));
+
+    if (!banners.length) {
+      box.classList.remove('has-image', 'has-rotation');
+      return;
+    }
+
+    box.classList.add('has-image');
+    box.classList.toggle('has-rotation', banners.length > 1);
+
+    box.innerHTML = banners.map((banner, index) => {
+      const href = banner.link_url || '#';
+      const target = banner.link_url ? 'target="_blank" rel="noopener noreferrer"' : '';
+      const label = banner.alt_text || banner.name || 'Patrocinador';
+
+      return `
+        <a
+          class="banner-slide${index === 0 ? ' active' : ''}"
+          href="${esc(href)}"
+          ${target}
+          data-banner-slot="${esc(slot)}"
+          data-banner-name="${esc(banner.name || '')}"
+          data-banner-index="${index}"
+        >
+          <img src="${esc(banner.image_url)}" alt="${esc(label)}">
+        </a>
+      `;
+    }).join('');
+
+    const slides = [...box.querySelectorAll('.banner-slide')];
+
+    slides.forEach(slide => {
+      slide.addEventListener('click', event => {
+        const banner = banners[Number(slide.dataset.bannerIndex)];
+        if (!banner.link_url) event.preventDefault();
+
+        trackEvent('clique_banner_patrocinador', {
+          posicao: slot,
+          nome: banner.name || ''
+        });
+      });
+    });
+
+    let currentIndex = 0;
+
+    const showSlide = nextIndex => {
+      slides[currentIndex].classList.remove('active');
+      currentIndex = nextIndex;
+      slides[currentIndex].classList.add('active');
+
+      trackEvent('impressao_banner_patrocinador', {
+        posicao: slot,
+        nome: banners[currentIndex].name || ''
+      });
+    };
+
+    trackEvent('impressao_banner_patrocinador', {
+      posicao: slot,
+      nome: banners[0].name || ''
+    });
+
+    if (slides.length > 1) {
+      const rotation = {
+        timer: null,
+        start() {
+          if (this.timer) return;
+          this.timer = setInterval(() => {
+            showSlide((currentIndex + 1) % slides.length);
+          }, 6000);
+        },
+        stop() {
+          if (!this.timer) return;
+          clearInterval(this.timer);
+          this.timer = null;
+        }
+      };
+
+      rotation.start();
+      bannerRotations.set(slot, rotation);
+
+      box.addEventListener('mouseenter', () => rotation.stop());
+      box.addEventListener('mouseleave', () => rotation.start());
+      box.addEventListener('focusin', () => rotation.stop());
+      box.addEventListener('focusout', () => rotation.start());
+    }
+  });
+}
+
 const PROFILE_LABELS={'Gênero':'Gênero','Faixa etária':'Faixa etária','Escolaridade':'Escolaridade','Estado civil':'Estado civil','Raça-cor':'Raça/cor','Identidade gênero':'Identidade de gênero','Quilombola':'Identificação quilombola','Libras':'Intérprete de Libras'};const COVERAGE_MAP={'Raça-cor':'Raça/cor','Identidade gênero':'Identidade de gênero','Quilombola':'Quilombola','Libras':'Intérprete de Libras'};
 function regionTotal(region){return (window.PROFILE_DATA.region_totals[region]||{}).total||window.PROFILE_DATA.indicators?.[region]?.total||0}
 function profileHeader(title,region,subtitle=''){return `<div class="profile-title-row"><div><h3>${esc(title)}</h3><p>${esc(subtitle||('Dados para '+(region==='3 REGIÕES'?'AMREC + AMUREL + AMESC':region)))}</p></div><div class="profile-total"><strong>${fmt(regionTotal(region))}</strong><span>eleitores na base selecionada</span></div></div>`}
