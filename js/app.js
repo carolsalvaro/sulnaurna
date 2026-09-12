@@ -32,6 +32,18 @@ function placeholderImage(i){const colors=[['#1C5FD6','#0B1E3D'],['#2E9E52','#12
 function renderStories(){const grid=document.getElementById('storyGrid');grid.innerHTML=HISTORIAS.map((h,i)=>`<a class="story-card" href="${esc(h.url)}" target="_blank" rel="noopener noreferrer" data-story="${i}"><img class="story-photo" src="${esc(h.image_url||placeholderImage(i))}" alt="" loading="lazy"><span class="story-title">${esc(h.title)}</span></a>`).join('');grid.querySelectorAll('[data-story]').forEach(a=>a.addEventListener('click',()=>trackEvent('clique_materia',{materia_titulo:HISTORIAS[Number(a.dataset.story)].title,materia_posicao:Number(a.dataset.story)+1})))}
 const bannerRotations = new Map();
 
+function bannerAnalyticsParams(banner, slot) {
+  const name = banner?.name || '';
+  return {
+    banner_id: String(banner?.id || ''),
+    banner_nome: name,
+    banner_posicao: slot,
+    // Mantidos por compatibilidade com os eventos que já estavam sendo coletados.
+    nome: name,
+    posicao: slot
+  };
+}
+
 function renderBanners() {
   const slots = {
     topo: 'sponsorBanner',
@@ -42,22 +54,25 @@ function renderBanners() {
     const box = document.getElementById(elementId);
     if (!box) return;
 
-    const previousRotation = bannerRotations.get(slot);
-    if (previousRotation) {
-      clearInterval(previousRotation.timer);
-      bannerRotations.delete(slot);
-    }
+    const wrapper = box.closest('.sponsor-banner-wrap');
+    const previousState = bannerRotations.get(slot);
+    if (previousState?.destroy) previousState.destroy();
+    bannerRotations.delete(slot);
 
     const banners = BANNERS
       .filter(banner => banner.slot === slot && banner.active !== false && banner.image_url)
       .sort((a, b) => Number(a.sort_order || 0) - Number(b.sort_order || 0));
 
     if (!banners.length) {
-      box.classList.remove('has-image', 'has-rotation');
+      box.innerHTML = '';
+      box.classList.remove('has-image', 'has-rotation', 'banner-ready', 'is-loading');
+      wrapper?.classList.add('is-empty');
       return;
     }
 
-    box.classList.add('has-image');
+    wrapper?.classList.remove('is-empty');
+    box.classList.add('has-image', 'is-loading');
+    box.classList.remove('banner-ready');
     box.classList.toggle('has-rotation', banners.length > 1);
 
     box.innerHTML = banners.map((banner, index) => {
@@ -71,70 +86,159 @@ function renderBanners() {
           href="${esc(href)}"
           ${target}
           data-banner-slot="${esc(slot)}"
+          data-banner-id="${esc(banner.id || '')}"
           data-banner-name="${esc(banner.name || '')}"
           data-banner-index="${index}"
         >
-          <img src="${esc(banner.image_url)}" alt="${esc(label)}">
+          <img src="${esc(banner.image_url)}" alt="${esc(label)}" decoding="async">
         </a>
       `;
     }).join('');
 
     const slides = [...box.querySelectorAll('.banner-slide')];
+    let currentIndex = 0;
+    let exposureSerial = 0;
+    let countedExposure = -1;
+    let impressionTimer = null;
+    let visibilityRatio = 0;
+    let rotationTimer = null;
+
+    const cancelImpressionTimer = () => {
+      if (!impressionTimer) return;
+      clearTimeout(impressionTimer);
+      impressionTimer = null;
+    };
+
+    const tryTrackImpression = () => {
+      if (
+        countedExposure === exposureSerial ||
+        impressionTimer ||
+        visibilityRatio < 0.5 ||
+        document.visibilityState === 'hidden' ||
+        !box.classList.contains('banner-ready')
+      ) return;
+
+      const serialAtStart = exposureSerial;
+      impressionTimer = setTimeout(() => {
+        impressionTimer = null;
+
+        if (
+          serialAtStart !== exposureSerial ||
+          countedExposure === serialAtStart ||
+          visibilityRatio < 0.5 ||
+          document.visibilityState === 'hidden' ||
+          !box.classList.contains('banner-ready')
+        ) return;
+
+        countedExposure = serialAtStart;
+        trackEvent(
+          'impressao_banner_patrocinador',
+          bannerAnalyticsParams(banners[currentIndex], slot)
+        );
+      }, 1000);
+    };
+
+    const visibilityObserver = 'IntersectionObserver' in window
+      ? new IntersectionObserver(entries => {
+          const entry = entries[0];
+          visibilityRatio = entry?.intersectionRatio || 0;
+          if (visibilityRatio >= 0.5) tryTrackImpression();
+          else cancelImpressionTimer();
+        }, { threshold: [0, 0.5, 1] })
+      : null;
+
+    if (visibilityObserver) {
+      visibilityObserver.observe(box);
+    } else {
+      // Fallback para navegadores antigos: considera o slot elegível após o carregamento.
+      visibilityRatio = 1;
+    }
+
+    const markBannerReady = () => {
+      box.classList.remove('is-loading');
+      box.classList.add('banner-ready');
+      tryTrackImpression();
+    };
+
+    const firstImage = slides[0]?.querySelector('img');
+    if (firstImage?.complete && firstImage.naturalWidth > 0) {
+      markBannerReady();
+    } else if (firstImage) {
+      firstImage.addEventListener('load', markBannerReady, { once: true });
+      firstImage.addEventListener('error', markBannerReady, { once: true });
+    } else {
+      markBannerReady();
+    }
 
     slides.forEach(slide => {
       slide.addEventListener('click', event => {
         const banner = banners[Number(slide.dataset.bannerIndex)];
-        if (!banner.link_url) event.preventDefault();
+        if (!banner?.link_url) {
+          event.preventDefault();
+          return;
+        }
 
-        trackEvent('clique_banner_patrocinador', {
-          posicao: slot,
-          nome: banner.name || ''
-        });
+        trackEvent(
+          'clique_banner_patrocinador',
+          bannerAnalyticsParams(banner, slot)
+        );
       });
     });
-
-    let currentIndex = 0;
 
     const showSlide = nextIndex => {
+      cancelImpressionTimer();
       slides[currentIndex].classList.remove('active');
       currentIndex = nextIndex;
+      exposureSerial += 1;
       slides[currentIndex].classList.add('active');
-
-      trackEvent('impressao_banner_patrocinador', {
-        posicao: slot,
-        nome: banners[currentIndex].name || ''
-      });
+      tryTrackImpression();
     };
 
-    trackEvent('impressao_banner_patrocinador', {
-      posicao: slot,
-      nome: banners[0].name || ''
-    });
+    const startRotation = () => {
+      if (rotationTimer || slides.length < 2) return;
+      rotationTimer = setInterval(() => {
+        showSlide((currentIndex + 1) % slides.length);
+      }, 6000);
+    };
+
+    const stopRotation = () => {
+      if (!rotationTimer) return;
+      clearInterval(rotationTimer);
+      rotationTimer = null;
+    };
+
+    const onMouseEnter = () => stopRotation();
+    const onMouseLeave = () => startRotation();
+    const onFocusIn = () => stopRotation();
+    const onFocusOut = () => startRotation();
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') cancelImpressionTimer();
+      else tryTrackImpression();
+    };
 
     if (slides.length > 1) {
-      const rotation = {
-        timer: null,
-        start() {
-          if (this.timer) return;
-          this.timer = setInterval(() => {
-            showSlide((currentIndex + 1) % slides.length);
-          }, 6000);
-        },
-        stop() {
-          if (!this.timer) return;
-          clearInterval(this.timer);
-          this.timer = null;
-        }
-      };
-
-      rotation.start();
-      bannerRotations.set(slot, rotation);
-
-      box.addEventListener('mouseenter', () => rotation.stop());
-      box.addEventListener('mouseleave', () => rotation.start());
-      box.addEventListener('focusin', () => rotation.stop());
-      box.addEventListener('focusout', () => rotation.start());
+      startRotation();
+      box.addEventListener('mouseenter', onMouseEnter);
+      box.addEventListener('mouseleave', onMouseLeave);
+      box.addEventListener('focusin', onFocusIn);
+      box.addEventListener('focusout', onFocusOut);
     }
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    const state = {
+      destroy() {
+        stopRotation();
+        cancelImpressionTimer();
+        visibilityObserver?.disconnect();
+        document.removeEventListener('visibilitychange', onVisibilityChange);
+        box.removeEventListener('mouseenter', onMouseEnter);
+        box.removeEventListener('mouseleave', onMouseLeave);
+        box.removeEventListener('focusin', onFocusIn);
+        box.removeEventListener('focusout', onFocusOut);
+      }
+    };
+
+    bannerRotations.set(slot, state);
   });
 }
 
@@ -212,4 +316,44 @@ function setupFeedback(){
   });
 }
 
-async function init(){montarRegioes();ensurePublicEnhancements();[CANDIDATOS,HISTORIAS,BANNERS]=await Promise.all([SNU_DATA.listCandidates(true),SNU_DATA.listArticles(true),SNU_DATA.listBanners(true)]);renderCandidates();renderStories();renderBanners();renderProfile();document.querySelectorAll('.toggle[aria-label="Filtrar por cargo"] button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.toggle[aria-label="Filtrar por cargo"] button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentOffice=btn.dataset.office;renderCandidates()}));document.getElementById('profileRegion').addEventListener('change',renderProfile);document.getElementById('profileMetric').addEventListener('change',renderProfile);['ctaHeader','ctaFooter'].forEach(id=>document.getElementById(id)?.addEventListener('click',()=>trackEvent('clique_central_eleicoes',{local:id})));setupFeedback()}init();
+async function init(){
+  montarRegioes();
+  ensurePublicEnhancements();
+
+  // Os banners começam a carregar imediatamente e não esperam candidatos/matérias.
+  const bannersTask = SNU_DATA.listBanners(true)
+    .then(data => {
+      BANNERS = Array.isArray(data) ? data : [];
+      renderBanners();
+    })
+    .catch(error => {
+      console.warn('Não foi possível carregar os banners:', error);
+      BANNERS = [];
+      renderBanners();
+    });
+
+  [CANDIDATOS,HISTORIAS] = await Promise.all([
+    SNU_DATA.listCandidates(true),
+    SNU_DATA.listArticles(true)
+  ]);
+
+  renderCandidates();
+  renderStories();
+  renderProfile();
+
+  document.querySelectorAll('.toggle[aria-label="Filtrar por cargo"] button').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('.toggle[aria-label="Filtrar por cargo"] button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentOffice=btn.dataset.office;
+    renderCandidates();
+  }));
+
+  document.getElementById('profileRegion').addEventListener('change',renderProfile);
+  document.getElementById('profileMetric').addEventListener('change',renderProfile);
+  ['ctaHeader','ctaFooter'].forEach(id=>document.getElementById(id)?.addEventListener('click',()=>trackEvent('clique_central_eleicoes',{local:id})));
+  setupFeedback();
+
+  // Mantém referência à Promise apenas para evitar rejeição não tratada; a UI não depende dela.
+  await bannersTask;
+}
+init();
