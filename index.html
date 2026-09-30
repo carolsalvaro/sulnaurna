@@ -24,7 +24,11 @@
   <meta content="Sul na Urna | Elei&ccedil;&otilde;es 2026 no Sul de Santa Catarina" name="twitter:title"/>
   <meta content="Candidatos, perfil do eleitor e hist&oacute;rias das elei&ccedil;&otilde;es na AMREC, AMESC e AMUREL." name="twitter:description"/>
   <meta content="https://sulnaurna.hnnoticias.com.br/assets/social-share.jpg" name="twitter:image"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet"/>
   <link href="css/site.css?v=7.4" rel="stylesheet"/>
+  <link href="css/simulator.css?v=4.0" rel="stylesheet"/>
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VZYMP84YWY">
   </script>
   <script>
@@ -91,6 +95,9 @@ window.addEventListener('load', function () {
      <a class="hide-mobile" href="#candidatos">
       Candidatos
      </a>
+     <a class="hide-mobile" href="#simulador">
+      Simule seu voto
+     </a>
      <a class="hide-mobile" href="#perfil">
       Perfil do eleitor
      </a>
@@ -153,6 +160,48 @@ window.addEventListener('load', function () {
        cargos &mdash; federal e estadual
       </div>
      </div>
+    </div>
+   </div>
+  </section>
+  <section class="section simulator-section" id="simulador">
+   <div class="wrap">
+    <div class="simulator-wrap" id="snuSimulator">
+     <div class="simulator-head">
+      <p class="simulator-eyebrow">Simulador de votação</p>
+      <h2>Treine a sequência da votação</h2>
+      <p>Digite os números, confira os dados na tela e percorra a sequência dos cargos antes de chegar à urna no dia da eleição.</p>
+      <div class="simulator-disclaimer"><span aria-hidden="true">ⓘ</span><div><strong>Simulação independente do Sul na Urna.</strong> Esta ferramenta não pertence à Justiça Eleitoral e não registra voto oficial. Ela foi criada exclusivamente para treinamento e informação do eleitor.</div></div>
+     </div>
+     <div class="sim-progress" data-sim-progress aria-label="Progresso da simulação"></div>
+     <div class="sim-machine" data-sim-machine>
+      <div class="sim-machine-brandbar"><span>SIMULAÇÃO</span><span>SUL NA URNA</span></div>
+      <div class="sim-screen-bezel">
+       <div class="sim-screen" aria-live="polite">
+        <div class="sim-screen-top"><span>Seu voto para</span><span>Simulação Sul na Urna</span></div>
+        <div class="sim-office" data-sim-office>Deputado Federal</div>
+        <div class="sim-digits" data-sim-digits></div>
+        <div class="sim-candidate" data-sim-candidate></div>
+        <div class="sim-message" data-sim-message></div>
+       </div>
+      </div>
+      <div class="sim-keypad-panel">
+       <div class="sim-je"><span class="sim-je-mark" aria-hidden="true"><i></i><i></i><i></i></span><span><strong>SUL NA URNA</strong><small>SIMULAÇÃO EDUCATIVA</small></span></div>
+       <div class="sim-keypad" aria-label="Teclado numérico">
+        <button class="sim-key" type="button" data-key="1">1</button><button class="sim-key" type="button" data-key="2">2</button><button class="sim-key" type="button" data-key="3">3</button>
+        <button class="sim-key" type="button" data-key="4">4</button><button class="sim-key" type="button" data-key="5">5</button><button class="sim-key" type="button" data-key="6">6</button>
+        <button class="sim-key" type="button" data-key="7">7</button><button class="sim-key" type="button" data-key="8">8</button><button class="sim-key" type="button" data-key="9">9</button>
+        <button class="sim-key zero" type="button" data-key="0">0</button>
+       </div>
+       <div class="sim-actions">
+        <button class="sim-action branco" type="button" data-sim-branco>Branco</button>
+        <button class="sim-action corrige" type="button" data-sim-corrige>Corrige</button>
+        <button class="sim-action confirma" type="button" data-sim-confirm disabled>Confirma</button>
+       </div>
+       
+      </div>
+     </div>
+     <div class="sim-footerline"><span>Sequência da simulação: Federal → Estadual → Senado 1 → Senado 2 → Governador → Presidente.</span><button class="sim-reset" type="button" data-sim-reset>Recomeçar simulação</button></div>
+
     </div>
    </div>
   </section>
@@ -423,9 +472,13 @@ window.addEventListener('load', function () {
   </script>
   <script src="data/profile-data.js">
   </script>
-  <script src="js/data-service.js">
+  <script src="js/data-service.js?v=5.0">
   </script>
   <script src="js/app.js?v=7.4">
+  </script>
+  <script src="data/simulator-candidates.js?v=20260930">
+  </script>
+  <script src="js/simulator.js?v=5.0">
   </script>
  </body>
 </html>
