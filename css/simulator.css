@@ -142,7 +142,11 @@
   .sim-candidate{grid-template-columns:84px 1fr;gap:11px}
   .sim-candidate-photo,.sim-candidate-placeholder{width:84px;height:106px}
   .sim-candidate-name{font-size:19px}
-  .sim-keypad-panel{padding:14px 3px 2px}
+  /* Mobile: remove a faixa decorativa entre tela e teclado para manter os comandos mais altos */
+  .sim-je{display:none}
+  .sim-keypad-panel{padding:6px 3px 2px}
+  .sim-keypad-panel::before{display:none}
+  .sim-keypad{margin-top:0}
   .sim-key{min-height:49px}
   .sim-actions{gap:5px}.sim-action{min-height:51px;font-size:10px}.sim-action.confirma{min-height:58px}
   .sim-footerline{align-items:stretch;flex-direction:column}
