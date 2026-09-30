@@ -16,6 +16,9 @@
   const candidates=Array.isArray(window.SIMULATOR_CANDIDATES)?window.SIMULATOR_CANDIDATES:[];
   let current=0, typed='', blank=false, selections=[], transitioning=false, finished=false;
   let confirmUnlocked=false, confirmTimer=null, readyKey='', runStarted=false;
+  let finalSoundPlayed=false, finalSoundUnlocked=false;
+  const finalSound=new Audio('assets/audio/fim-urna.mp3');
+  finalSound.preload='auto';
 
   const $=sel=>root.querySelector(sel);
   const progress=$('[data-sim-progress]');
@@ -33,6 +36,37 @@
   const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,ch=>({
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
   }[ch]));
+
+  function unlockFinalSound(){
+    if(finalSoundUnlocked)return;
+    finalSoundUnlocked=true;
+    try{
+      const previousMuted=finalSound.muted;
+      finalSound.muted=true;
+      const attempt=finalSound.play();
+      if(attempt&&typeof attempt.then==='function'){
+        attempt.then(()=>{
+          finalSound.pause();
+          finalSound.currentTime=0;
+          finalSound.muted=previousMuted;
+        }).catch(()=>{ finalSound.muted=previousMuted; });
+      }else{
+        finalSound.pause();
+        finalSound.currentTime=0;
+        finalSound.muted=previousMuted;
+      }
+    }catch(e){}
+  }
+  function playFinalSound(){
+    if(finalSoundPlayed)return;
+    finalSoundPlayed=true;
+    try{
+      finalSound.muted=false;
+      finalSound.currentTime=0;
+      const attempt=finalSound.play();
+      if(attempt&&typeof attempt.catch==='function')attempt.catch(()=>{});
+    }catch(e){}
+  }
 
   function emit(name,params){
     try{
@@ -209,14 +243,16 @@
   function renderFinal(){
     finished=true;renderProgress();setControlsDisabled(true);office.textContent='Simulação concluída';digits.innerHTML='';
     candidate.innerHTML='<div class="sim-fim" role="status"><strong>FIM</strong><span>Você chegou ao final da sequência de votação.</span></div>';
+    playFinalSound();
     message.className='sim-message final';message.textContent='Esta foi apenas uma simulação educativa. Nenhum voto oficial foi registrado.';
     resetBtn.textContent='Simular novamente';emit('simulador_urna_concluido');record('complete');
   }
   function restart(){
-    clearConfirmTimer();record('restart');current=0;typed='';blank=false;selections=[];transitioning=false;finished=false;confirmUnlocked=false;readyKey='';runStarted=false;
+    clearConfirmTimer();record('restart');current=0;typed='';blank=false;selections=[];transitioning=false;finished=false;confirmUnlocked=false;readyKey='';runStarted=false;finalSoundPlayed=false;
     setControlsDisabled(false);resetBtn.textContent='Recomeçar simulação';machine.hidden=false;render();emit('simulador_urna_reiniciar');
   }
 
+  root.addEventListener('pointerdown',unlockFinalSound,{once:true});
   root.addEventListener('click',e=>{const key=e.target.closest('[data-key]');if(key){addDigit(key.dataset.key);return;}});
   $('[data-sim-branco]').addEventListener('click',voteBlank);
   $('[data-sim-corrige]').addEventListener('click',correct);
