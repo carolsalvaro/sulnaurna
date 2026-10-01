@@ -160,8 +160,7 @@
       h1{font-size:28px;margin:0 0 6px}.sub{color:#5B6780;margin:0 0 20px}table{width:100%;border-collapse:collapse}td{padding:13px 10px;border-bottom:1px solid #DEE3EE;font-size:15px}td:first-child{width:40%;font-weight:700;color:#5B6780}
       .note{margin-top:22px;font-size:12px;color:#5B6780;line-height:1.5}.url{font-weight:700;color:#1C5FD6}
       @media print{body{padding:18px}}
-    </style></head><body><div class="brand"><img src="${hn}" alt="HN Notícias"><span>+</span><img src="${vertical}" alt="Rádio Vertical FM"></div><h1>Minha colinha — Eleições 2026</h1><p class="sub">Sul na Urna · HN Notícias + Rádio Vertical FM</p><table>${printableRows()}</table><p class="note">Gerada a partir de uma simulação educativa. Não é voto oficial. <span class="url">sulnaurna.hnnoticias.com.br</span></p><script>window.onload=()=>window.print()<\/script></body></html>`);
-    w.document.close();
+    </style></head><body><div class="brand"><img src="${hn}" alt="HN Notícias"><span>+</span><img src="${vertical}" alt="Rádio Vertical FM"></div><h1>Minha colinha — Eleições 2026</h1><p class="sub">Sul na Urna · HN Notícias + Rádio Vertical FM</p><table>${printableRows()}</table><p class="note">Gerada a partir de uma simulação educativa. Não é voto oficial.<br><br><strong>Quer fazer a sua também?</strong><br><span class="url">https://sulnaurna.hnnoticias.com.br/</span>
     emit('simulador_colinha_imprimir');
   }
   function loadCanvasImage(src){
@@ -174,8 +173,19 @@
   }
   async function buildColinhaImage(){
     const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350;const ctx=canvas.getContext('2d');
-    ctx.fillStyle='#F3F5FA';ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle='#0B1E3D';ctx.fillRect(0,0,canvas.width,170);
+   ctx.fillStyle='#5B6780';
+ctx.font='400 20px Arial';
+ctx.textAlign='left';
+ctx.fillText('Simulação educativa — não registra voto oficial.',70,1275);
+
+ctx.fillStyle='#0B1E3D';
+ctx.font='700 22px Arial';
+ctx.fillText('QUER FAZER A SUA TAMBÉM?',70,1310);
+
+ctx.textAlign='right';
+ctx.font='700 22px Arial';
+ctx.fillStyle='#1C5FD6';
+ctx.fillText('sulnaurna.hnnoticias.com.br',1010,1310);
     try{
       const [hn,vert]=await Promise.all([loadCanvasImage('assets/brand/hn.png'),loadCanvasImage('assets/brand/vertical.jpg')]);
       const drawContain=(img,x,y,w,h)=>{const scale=Math.min(w/img.width,h/img.height);const dw=img.width*scale,dh=img.height*scale;ctx.drawImage(img,x+(w-dw)/2,y+(h-dh)/2,dw,dh);};
@@ -207,7 +217,11 @@
       const blob=await buildColinhaImage();
       const file=new File([blob],'minha-colinha-sul-na-urna.png',{type:'image/png'});
       if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
-        await navigator.share({title:'Minha colinha — Sul na Urna',text:'Minha colinha da simulação de votação no Sul na Urna.',files:[file]});
+       await navigator.share({
+  title:'Minha colinha — Sul na Urna',
+  text:'Fiz minha simulação no Sul na Urna 🗳️\n\nFaça a sua também: https://sulnaurna.hnnoticias.com.br/',
+  files:[file]
+});
       }else{
         const a=document.createElement('a');const url=URL.createObjectURL(blob);a.href=url;a.download=file.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
       }
