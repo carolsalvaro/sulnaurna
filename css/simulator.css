@@ -146,9 +146,9 @@
   .sim-je{display:none}
   .sim-keypad-panel{padding:6px 3px 2px}
   .sim-keypad-panel::before{display:none}
-  .sim-keypad{margin-top:0}
-  .sim-key{min-height:49px}
-  .sim-actions{gap:5px}.sim-action{min-height:51px;font-size:10px}.sim-action.confirma{min-height:58px}
+  .sim-keypad{margin-top:0;gap:7px;padding:8px 9px 9px}
+  .sim-key{min-height:45px;font-size:18px}
+  .sim-actions{gap:5px}.sim-action{min-height:48px;font-size:10px}.sim-action.confirma{min-height:54px}
   .sim-footerline{align-items:stretch;flex-direction:column}
   .sim-reset{width:100%;font-size:14px;min-height:50px}
   .sim-transition-check{width:84px;height:106px;font-size:44px}
@@ -165,3 +165,30 @@
 .sim-companion strong{font-size:11px;overflow-wrap:anywhere}
 .sim-companion small{font-size:9px;color:#555;margin-top:2px}
 @media(max-width:520px){.sim-companions{display:grid;grid-template-columns:1fr}.sim-companion{min-width:0}}
+
+
+/* v6 — encerramento com colinha */
+.sim-final-card{margin-top:18px;padding:22px;border:1px solid #cbd8ec;border-radius:14px;background:#fff;box-shadow:0 8px 24px rgba(11,30,61,.07)}
+.sim-final-card[hidden]{display:none}
+.sim-final-brand{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.sim-final-brand img{display:block;max-height:38px;max-width:145px;object-fit:contain}
+.sim-final-brand span{font-weight:900;color:var(--muted2)}
+.sim-final-kicker{margin:0 0 5px;color:var(--blue);font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.sim-final-card h3{font-family:'Fraunces',serif;margin:0 0 7px;font-size:26px;color:var(--deep)}
+.sim-final-count{margin:0 0 16px;color:var(--muted);font-size:13px;line-height:1.45}
+.sim-colinha{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sim-colinha-row{border:1px solid var(--line);border-radius:9px;background:#f8fafc;padding:10px 12px;min-width:0}
+.sim-colinha-row span{display:block;color:var(--muted2);font-size:10px;font-weight:800;text-transform:uppercase;margin-bottom:4px}
+.sim-colinha-row strong{display:block;color:var(--deep);font-size:13px;overflow-wrap:anywhere}
+.sim-final-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.sim-final-btn{min-height:46px;border:0;border-radius:9px;padding:11px 16px;background:var(--deep);color:#fff;font:800 13px 'Atkinson Hyperlegible Next',Arial,sans-serif;cursor:pointer}
+.sim-final-btn.secondary{background:#fff;color:var(--deep);border:1px solid #b9c9e3}
+.sim-final-btn:disabled{opacity:.55;cursor:wait}
+.sim-final-note{margin:12px 0 0;color:var(--muted2);font-size:11px;line-height:1.45}
+@media(max-width:520px){
+  .sim-final-card{padding:16px 14px}
+  .sim-final-brand img{max-height:30px;max-width:115px}
+  .sim-colinha{grid-template-columns:1fr}
+  .sim-final-actions{display:grid;grid-template-columns:1fr 1fr}
+  .sim-final-btn{padding:10px 8px;font-size:12px}
+}

@@ -92,7 +92,7 @@ function renderSimulatorCandidates(){
   const body=document.getElementById('simCandidateBody');const rows=new Map();
   state.simCandidateRows.filter(r=>r.office===state.simOffice).forEach(r=>{const prev=rows.get(r.candidate_id)||{...r,confirmations:0};prev.confirmations+=n(r.confirmations);rows.set(r.candidate_id,prev);});
   const staticCandidates=Array.isArray(window.SIMULATOR_CANDIDATES)?window.SIMULATOR_CANDIDATES:[];const photoMap=new Map(staticCandidates.map(c=>[String(c.sq_candidate),c.photo_url]));
-  const arr=[...rows.values()].sort((a,b)=>String(a.candidate_number).localeCompare(String(b.candidate_number),'pt-BR',{numeric:true})||String(a.candidate_name).localeCompare(String(b.candidate_name),'pt-BR'));
+  const arr=[...rows.values()].sort((a,b)=>n(b.confirmations)-n(a.confirmations)||String(a.candidate_number).localeCompare(String(b.candidate_number),'pt-BR',{numeric:true})||String(a.candidate_name).localeCompare(String(b.candidate_name),'pt-BR'));
   body.innerHTML=arr.length?arr.map(r=>{const photo=photoMap.get(String(r.candidate_id));return `<tr><td><div class="candidate-name-cell">${photo?`<img src="${e(mediaSrc(photo))}" alt="">`:''}<strong>${e(r.candidate_name)}</strong></div></td><td><strong>${e(r.candidate_number)}</strong></td><td>${e(r.party)}</td><td>${fmt(r.confirmations)}</td></tr>`;}).join(''):`<tr><td colspan="4" style="padding:24px;color:var(--muted)">Nenhuma escolha de ${e(simOfficeLabels[state.simOffice])} registrada neste período.</td></tr>`;
 }
 

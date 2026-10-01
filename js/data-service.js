@@ -42,11 +42,19 @@
     return {error,configured:true};
   }
 
+  async function getSimulatorPublicStats(){
+    if(!client)return {data:null,error:null,configured:false};
+    const {data,error}=await client.rpc('get_simulator_public_stats');
+    if(error)return {data:null,error,configured:true};
+    const row=Array.isArray(data)?data[0]:data;
+    return {data:{completions:Number(row?.completions||0)},error:null,configured:true};
+  }
+
   window.SNU_DATA={
     configured,client,
     listCandidates:(a=true)=>list('candidates','candidates',a),
     listArticles:(a=true)=>list('articles','articles',a),
     listBanners:(a=true)=>list('banners','banners',a),
-    submitFeedback,recordSimulatorEvent,demoRead,demoWrite
+    submitFeedback,recordSimulatorEvent,getSimulatorPublicStats,demoRead,demoWrite
   };
 })();

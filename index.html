@@ -6,7 +6,7 @@
   <title>
    Sul na Urna &mdash; HN Not&iacute;cias + Vertical FM
   </title>
-  <meta content="Sul na Urna: candidatos a deputado federal e estadual da AMREC, AMESC e AMUREL, perfil do eleitor e hist&oacute;rias das Elei&ccedil;&otilde;es 2026." name="description"/>
+  <meta content="Sul na Urna: simulador educativo da votação de 2026, candidatos do Sul de Santa Catarina, perfil do eleitor e histórias das eleições." name="description"/>
   <link href="https://sulnaurna.hnnoticias.com.br/" rel="canonical"/>
   <meta content="pt_BR" property="og:locale"/>
   <meta content="website" property="og:type"/>
@@ -28,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet"/>
   <link href="css/site.css?v=7.4" rel="stylesheet"/>
-  <link href="css/simulator.css?v=4.1" rel="stylesheet"/>
+  <link href="css/simulator.css?v=6.0" rel="stylesheet"/>
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VZYMP84YWY">
   </script>
   <script>
@@ -123,44 +123,14 @@ window.addEventListener('load', function () {
   <section class="hero">
    <div class="wrap">
     <p class="kicker">
-     SUL NA URNA &middot; AMREC + AMESC + AMUREL
+     SUL NA URNA &middot; ELEI&Ccedil;&Otilde;ES 2026
     </p>
     <h1>
-     Quem disputa o seu voto
-     <em>
-      para deputado
-     </em>
-     , aqui no Sul de Santa Catarina.
+     Prepare-se para votar. <em>Simule a urna</em> e confira informa&ccedil;&otilde;es para chegar mais preparado ao domingo.
     </h1>
     <p class="lede">
-     Uma lista organizada por regi&atilde;o dos candidatos a deputado federal e estadual da AMREC, da AMESC e da AMUREL. Clique em qualquer nome para consultar os dados oficiais da candidatura no TSE.
+     Treine a sequ&ecirc;ncia completa da vota&ccedil;&atilde;o, monte sua colinha e, logo abaixo, conhe&ccedil;a os candidatos a deputado federal e estadual da AMREC, AMESC e AMUREL.
     </p>
-    <div class="stats">
-     <div class="stat">
-      <div class="num" id="statTotal">
-       &mdash;
-      </div>
-      <div class="lab">
-       candidatos listados
-      </div>
-     </div>
-     <div class="stat">
-      <div class="num">
-       3
-      </div>
-      <div class="lab">
-       regi&otilde;es &mdash; AMREC, AMESC e AMUREL
-      </div>
-     </div>
-     <div class="stat">
-      <div class="num">
-       2
-      </div>
-      <div class="lab">
-       cargos &mdash; federal e estadual
-      </div>
-     </div>
-    </div>
    </div>
   </section>
   <section class="section simulator-section" id="simulador">
@@ -208,12 +178,18 @@ window.addEventListener('load', function () {
   <section class="section" id="candidatos">
    <div class="wrap">
     <div class="section-head">
+     <p class="kicker">VOTO REGIONAL &middot; AMREC + AMESC + AMUREL</p>
      <h2>
-      Candidatos por regi&atilde;o
+      Conhe&ccedil;a os candidatos do Sul de Santa Catarina
      </h2>
      <p>
-      Escolha o cargo e a regi&atilde;o para filtrar a lista. Cada candidato abre em uma nova aba, diretamente na p&aacute;gina oficial de candidatura no TSE.
+      O Sul na Urna tamb&eacute;m re&uacute;ne os candidatos a deputado federal e estadual com refer&ecirc;ncia regional na AMREC, AMESC e AMUREL. Escolha o cargo e a regi&atilde;o para filtrar a lista e, ao clicar em um nome, consulte os dados oficiais da candidatura no TSE.
      </p>
+     <div class="stats">
+      <div class="stat"><div class="num" id="statTotal">&mdash;</div><div class="lab">candidatos listados</div></div>
+      <div class="stat"><div class="num">3</div><div class="lab">regi&otilde;es &mdash; AMREC, AMESC e AMUREL</div></div>
+      <div class="stat"><div class="num">2</div><div class="lab">cargos &mdash; federal e estadual</div></div>
+     </div>
     </div>
     <div class="toggle-row">
      <div class="toggle-group">
@@ -472,13 +448,13 @@ window.addEventListener('load', function () {
   </script>
   <script src="data/profile-data.js">
   </script>
-  <script src="js/data-service.js?v=5.0">
+  <script src="js/data-service.js?v=6.0">
   </script>
   <script src="js/app.js?v=7.4">
   </script>
   <script src="data/simulator-candidates.js?v=20260930">
   </script>
-  <script src="js/simulator.js?v=5.1">
+  <script src="js/simulator.js?v=6.0">
   </script>
  </body>
 </html>

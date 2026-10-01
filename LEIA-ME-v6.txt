@@ -1,0 +1,22 @@
+SUL NA URNA — V6 AJUSTES
+
+1) Rode no Supabase SQL Editor:
+   supabase/simulator_public_stats.sql
+
+2) Depois substitua no GitHub:
+   index.html
+   css/simulator.css
+   js/simulator.js
+   js/data-service.js
+   admin/admin.js
+   admin/index.html
+
+Não é necessário reenviar as fotos, o áudio do FIM ou a imagem de compartilhamento se eles já estão no repositório.
+
+Alterações:
+- abertura da página reposicionada para o simulador;
+- bloco regional movido para a seção de candidatos;
+- teclado mobile um pouco menor;
+- FIM mostra colinha e total agregado de simulações concluídas;
+- colinha pode ser impressa ou compartilhada como imagem com HN + Vertical;
+- Admin ordena internamente candidatos por número de confirmações.
