@@ -969,3 +969,110 @@ a:focus-visible,button:focus-visible,select:focus-visible {
     transition:none
   }
 }
+
+/* v7.5 — chamada para apuração em tempo real */
+.election-results-cta{
+  padding:28px 0 4px;
+  background:#fff
+}
+.election-results-box{
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  padding:28px 30px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#0B1E3D 0%,#123B7A 70%,#1C5FD6 100%);
+  color:#fff;
+  box-shadow:0 14px 36px rgba(11,30,61,.16)
+}
+.election-results-box::after{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  right:-80px;
+  top:-120px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  pointer-events:none
+}
+.election-results-copy{position:relative;z-index:1;max-width:650px}
+.election-results-kicker{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:8px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.1em
+}
+.live-dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#FF4D4D;
+  box-shadow:0 0 0 0 rgba(255,77,77,.55);
+  animation:livePulse 1.7s ease-out infinite
+}
+.election-results-box h2{
+  margin:0 0 8px;
+  font-family:'Fraunces',serif;
+  font-size:clamp(25px,3.5vw,34px);
+  line-height:1.1;
+  color:#fff
+}
+.election-results-box p{
+  margin:0;
+  max-width:620px;
+  font-size:14px;
+  line-height:1.55;
+  color:rgba(255,255,255,.82)
+}
+.election-results-btn{
+  position:relative;
+  z-index:1;
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:52px;
+  padding:13px 20px;
+  border-radius:10px;
+  background:#fff;
+  color:#123B7A;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:800;
+  white-space:nowrap;
+  box-shadow:0 8px 22px rgba(0,0,0,.14);
+  transition:transform .15s ease,box-shadow .15s ease
+}
+.election-results-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 26px rgba(0,0,0,.2)
+}
+.election-results-btn span{font-size:20px;line-height:1}
+@keyframes livePulse{
+  0%{box-shadow:0 0 0 0 rgba(255,77,77,.55)}
+  70%{box-shadow:0 0 0 8px rgba(255,77,77,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,77,77,0)}
+}
+@media(max-width:720px){
+  .election-results-cta{padding:20px 0 0}
+  .election-results-box{
+    align-items:stretch;
+    flex-direction:column;
+    gap:18px;
+    padding:22px 20px
+  }
+  .election-results-btn{width:100%;white-space:normal;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  .live-dot{animation:none}
+  .election-results-btn{transition:none}
+}
+
