@@ -43,6 +43,26 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
   a.btn,a.btn:before{animation:none}
 }
 
+
+/* Todos os eleitos */
+.all-elected{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.elected-shell{background:#f8fafc;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 10px 28px rgba(14,45,79,.06)}
+.elected-tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.elected-tab{appearance:none;border:1px solid #cfd9e3;background:#fff;color:var(--navy);border-radius:12px;padding:14px 16px;font:800 15px inherit;cursor:pointer;transition:.18s}
+.elected-tab.active{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 7px 20px rgba(20,56,99,.18)}
+.elected-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.elected-row{display:grid;grid-template-columns:38px minmax(0,1fr) auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px 14px;min-height:72px}
+.elected-rank{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#edf3f8;color:var(--navy);font-size:13px;font-weight:900}
+.elected-name{font-size:15px;font-weight:900;color:#0d1f33;line-height:1.2}.elected-party{font-size:12px;color:var(--muted);margin-top:4px;font-weight:700}
+.elected-votes{text-align:right;font-size:14px;font-weight:900;color:var(--blue);white-space:nowrap}.elected-votes small{display:block;color:var(--muted);font-size:10px;font-weight:700;margin-top:2px}
+.elected-footer{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.elected-source{text-align:center;color:var(--muted);font-size:12px;margin-top:15px;line-height:1.5}
+@media(max-width:720px){
+  .elected-shell{padding:14px;border-radius:16px}.elected-tabs{gap:7px}.elected-tab{font-size:13px;padding:12px 8px}
+  .elected-grid{grid-template-columns:1fr}.elected-row{grid-template-columns:34px minmax(0,1fr) auto;padding:11px 10px;gap:9px;min-height:66px}
+  .elected-name{font-size:14px}.elected-votes{font-size:13px}.elected-footer{display:grid;grid-template-columns:1fr;width:100%}.elected-footer .btn{width:100%}
+}
+
 </style>
 </head>
 <body>
@@ -85,9 +105,29 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
     <div class="grid three">
       <article class="card result-card"><div class="result-head"><span>Governo de SC</span><h3>Governador reeleito</h3></div><div class="result-body"><div class="result-person"><img class="result-photo" src="https://commons.wikimedia.org/wiki/Special:FilePath/2026%20JORGINHO%20MELLO%20CANDIDATO%20GOVERNADOR%20SC%20TSE%20%28240002537073%29.jpg" alt="Jorginho Mello"><div class="result-person-text"><div class="result-name">Jorginho Mello</div><div class="result-number">PL • 68,98%</div></div></div><p>2.942.386 votos. Vice eleito: Adriano Silva (Novo).</p><a class="btn light" target="_blank" rel="noopener" href="https://hnnoticias.com.br/eleicoes-2026/jorginho-mello-e-reeleito-governador-de-santa-catarina-no-primeiro-turno/" style="margin-top:16px">Ler no HN Notícias</a></div></article>
       <article class="card result-card"><div class="result-head"><span>Senado</span><h3>Duas vagas definidas</h3></div><div class="result-body"><div class="result-person compact"><img class="result-photo" src="https://commons.wikimedia.org/wiki/Special:FilePath/2026%20CAROL%20DE%20TONI%20CANDIDATA%20SENADORA%20TSE%20SC%20%28240002541931%29.jpg" alt="Carol de Toni"><div class="result-person-text"><div class="result-name">Carol de Toni</div><div class="result-number">PL • eleita</div></div></div><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><div class="result-person compact"><img class="result-photo" src="https://commons.wikimedia.org/wiki/Special:FilePath/2026%20CARLOS%20BOLSONARO%20CANDIDATO%20SENADOR%20TSE%20SC%20%28240002541935%29.jpg" alt="Carlos Bolsonaro"><div class="result-person-text"><div class="result-name">Carlos Bolsonaro</div><div class="result-number">PL • eleito</div></div></div><p style="margin-top:14px">Os dois assumem as vagas em disputa por Santa Catarina.</p><a class="btn light" target="_blank" rel="noopener" href="https://hnnoticias.com.br/politica/carol-de-toni-e-carlos-bolsonaro-sao-eleitos-senadores-por-santa-catarina/" style="margin-top:16px">Veja a matéria completa</a></div></article>
-      <article class="card"><div class="stat">56</div><div class="label">cadeiras definidas</div><h3>Nova representação</h3><p>Santa Catarina escolheu 16 deputados federais e 40 deputados estaduais para os mandatos iniciados em 2027.</p><a class="btn light" target="_blank" rel="noopener" href="https://hnnoticias.com.br/politica/bancada-federal-de-sc-muda-7-das-16-cadeiras-em-2026-veja-comparacao-com-2022/" style="margin-top:16px">Entenda o que mudou</a></article>
+      <article class="card"><div class="stat">56</div><div class="label">cadeiras definidas</div><h3>Nova representação</h3><p>Santa Catarina escolheu 16 deputados federais e 40 deputados estaduais para os mandatos iniciados em 2027.</p><a class="btn light" href="#todos-eleitos" style="margin-top:16px">Ver todos os eleitos</a></article>
     </div>
     <div class="source-note">Dados eleitorais: totalização oficial das Eleições 2026. Links direcionam para a cobertura do HN Notícias.</div>
+  </div>
+</section>
+
+
+<section id="todos-eleitos" class="all-elected">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="kicker">Nova composição</div>
+      <h2>Todos os deputados eleitos por Santa Catarina</h2>
+      <p>Consulte os 16 nomes eleitos para a Câmara dos Deputados e os 40 eleitos para a Assembleia Legislativa. Use as abas para alternar entre os cargos.</p>
+    </div>
+    <div class="elected-shell">
+      <div class="elected-tabs" role="tablist" aria-label="Deputados eleitos">
+        <button class="elected-tab active" type="button" role="tab" aria-selected="true" data-elected-tab="federal">Deputados federais (16)</button>
+        <button class="elected-tab" type="button" role="tab" aria-selected="false" data-elected-tab="estadual">Deputados estaduais (40)</button>
+      </div>
+      <div class="elected-grid" id="electedGrid"></div>
+      <div class="elected-footer" id="electedFooter"></div>
+      <div class="elected-source">Votações finais com 100% das urnas apuradas em Santa Catarina. Fonte dos dados: Tribunal Superior Eleitoral (TSE).</div>
+    </div>
   </div>
 </section>
 
@@ -282,6 +322,41 @@ async function loadSponsorCarousel(){
 window.addEventListener('DOMContentLoaded',loadSponsorCarousel);
 </script>
 
+
+
+<script>
+const ELECTED_DATA={
+  federal:[{"name": "Julia Zanatta", "party": "PL", "votes": "560.223"}, {"name": "Ana Paula Lima", "party": "PT", "votes": "201.377"}, {"name": "Professor Pedro Uczai", "party": "PT", "votes": "164.389"}, {"name": "Jair Bolsonaro", "party": "PL", "votes": "131.555"}, {"name": "Sargento Lima", "party": "PL", "votes": "128.333"}, {"name": "Pezenti", "party": "MDB", "votes": "125.010"}, {"name": "Gilson Marques", "party": "NOVO", "votes": "117.197"}, {"name": "Giovana Mondardo", "party": "PCdoB", "votes": "114.792"}, {"name": "Julio Garcia", "party": "PSD", "votes": "114.391"}, {"name": "Daniela Reinehr", "party": "PL", "votes": "96.253"}, {"name": "Zé Milton", "party": "PP", "votes": "93.005"}, {"name": "Paulinha", "party": "PODE", "votes": "92.598"}, {"name": "Zé Trovão", "party": "PL", "votes": "89.830"}, {"name": "Ricardo Guidi", "party": "PL", "votes": "78.698"}, {"name": "Daniel Freitas", "party": "PL", "votes": "76.458"}, {"name": "Geovania de Sá", "party": "REPUBLICANOS", "votes": "74.603"}],
+  estadual:[{"name": "Ana Campagnolo", "party": "PL", "votes": "387.523"}, {"name": "Luciane Carminatti", "party": "PT", "votes": "124.590"}, {"name": "Sérgio Guimarães", "party": "UNIÃO", "votes": "87.761"}, {"name": "Lucas Neves", "party": "REPUBLICANOS", "votes": "82.706"}, {"name": "Dr. Vicente", "party": "UNIÃO", "votes": "79.663"}, {"name": "Guilherme Colombo", "party": "PL", "votes": "76.041"}, {"name": "Fernando Krelling", "party": "MDB", "votes": "70.506"}, {"name": "Mauro de Nadal", "party": "MDB", "votes": "65.369"}, {"name": "Marquito", "party": "PSOL", "votes": "65.199"}, {"name": "Massocco", "party": "PL", "votes": "64.805"}, {"name": "Camilo Martins", "party": "PL", "votes": "63.933"}, {"name": "Jessé Lopes", "party": "PL", "votes": "61.781"}, {"name": "Clesio Salvaro", "party": "PSD", "votes": "58.480"}, {"name": "Pepê Collaço", "party": "PP", "votes": "57.470"}, {"name": "Carlos Humberto", "party": "PL", "votes": "55.486"}, {"name": "Oscar Gutz", "party": "PL", "votes": "51.953"}, {"name": "Osmar Teixeira", "party": "PODE", "votes": "48.994"}, {"name": "Jean Volpato", "party": "PT", "votes": "48.204"}, {"name": "Delegado Ulisses Gabriel", "party": "PL", "votes": "48.130"}, {"name": "Altair Silva", "party": "PP", "votes": "46.919"}, {"name": "Marcos da Rosa", "party": "PL", "votes": "46.523"}, {"name": "Jerry Comper", "party": "MDB", "votes": "45.603"}, {"name": "Maurício Peixer", "party": "PL", "votes": "44.158"}, {"name": "Juliana Maciel", "party": "PL", "votes": "43.142"}, {"name": "Sorgatto", "party": "PL", "votes": "42.513"}, {"name": "Wilian Tonezi", "party": "PL", "votes": "42.342"}, {"name": "Tiago Zilli", "party": "MDB", "votes": "41.548"}, {"name": "Bruno Souza", "party": "PL", "votes": "40.327"}, {"name": "Chica do Eskudlark", "party": "PL", "votes": "39.929"}, {"name": "Fabio Botelho", "party": "PODE", "votes": "39.164"}, {"name": "Marcius Machado", "party": "PL", "votes": "37.061"}, {"name": "Fabiano da Luz", "party": "PT", "votes": "35.029"}, {"name": "Mário Motta", "party": "PSD", "votes": "34.977"}, {"name": "Napoleão Bernardes", "party": "PSD", "votes": "34.949"}, {"name": "Neodi Saretta", "party": "PT", "votes": "34.841"}, {"name": "Sergio Motta", "party": "REPUBLICANOS", "votes": "33.758"}, {"name": "Padre Pedro", "party": "PT", "votes": "33.304"}, {"name": "Odair Tramontin", "party": "NOVO", "votes": "32.134"}, {"name": "Rodrigo Minotto", "party": "PDT", "votes": "27.918"}, {"name": "Anna Carolina", "party": "REPUBLICANOS", "votes": "25.647"}]
+};
+const ELECTED_LINKS={
+  federal:'https://hnnoticias.com.br/politica/bancada-federal-de-sc-muda-7-das-16-cadeiras-em-2026-veja-comparacao-com-2022/',
+  estadual:'https://hnnoticias.com.br/politica/alesc-2026-26-deputados-eleitos-em-2022-voltam-a-assembleia-veja-quem-cresceu-quem-ficou-fora-e-quem-mudou-de-cargo/'
+};
+function renderElected(type){
+  const grid=document.getElementById('electedGrid');
+  const footer=document.getElementById('electedFooter');
+  if(!grid||!footer)return;
+  const rows=ELECTED_DATA[type]||[];
+  grid.innerHTML=rows.map((p,i)=>`
+    <div class="elected-row">
+      <div class="elected-rank">${i+1}</div>
+      <div><div class="elected-name">${p.name}</div><div class="elected-party">${p.party}</div></div>
+      <div class="elected-votes">${p.votes}<small>votos</small></div>
+    </div>`).join('');
+  const label=type==='federal'?'Ver análise completa da bancada federal':'Ver análise completa da Alesc';
+  footer.innerHTML=`<a class="btn dark" target="_blank" rel="noopener" href="${ELECTED_LINKS[type]}">${label}</a>`;
+  document.querySelectorAll('[data-elected-tab]').forEach(btn=>{
+    const on=btn.dataset.electedTab===type;
+    btn.classList.toggle('active',on);
+    btn.setAttribute('aria-selected',on?'true':'false');
+  });
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  renderElected('federal');
+  document.querySelectorAll('[data-elected-tab]').forEach(btn=>btn.addEventListener('click',()=>renderElected(btn.dataset.electedTab)));
+});
+</script>
 
 </body>
 </html>
