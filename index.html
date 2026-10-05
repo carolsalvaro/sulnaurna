@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="theme-color" content="#0e2d4f" />
-<title>Sul na Urna | 1º turno encerrado</title>
+<title>Sul na Urna | Eleições 2026 — resultados, mapa e 2º turno</title>
 <meta name="description" content="O primeiro turno terminou, mas a missão de informar continua. Veja os eleitos em Santa Catarina, a representação do Sul e o caminho até o segundo turno das Eleições 2026." />
 <style>
 :root{--navy:#0e2d4f;--navy2:#153f6e;--blue:#1e6fb8;--gold:#e3a82b;--gold2:#f2c14d;--ink:#14202b;--muted:#647080;--bg:#f3f6f9;--white:#fff;--green:#169b62;--line:#dfe6ed;--shadow:0 14px 42px rgba(15,45,79,.12)}
@@ -63,6 +63,180 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
   .elected-name{font-size:14px}.elected-votes{font-size:13px}.elected-footer{display:grid;grid-template-columns:1fr;width:100%}.elected-footer .btn{width:100%}
 }
 
+
+/* v9 — cabeçalho claro para valorizar as marcas */
+.hero{
+  background:linear-gradient(135deg,#f9fcff 0%,#eaf3fb 52%,#d9e9f6 100%);
+  color:var(--navy);
+  border-bottom:1px solid #cfdde9;
+}
+.hero:after{
+  border-color:rgba(14,45,79,.055);
+}
+.hero .brand-plus{color:#6f8192}
+.hero .pill{
+  border-color:rgba(14,45,79,.20);
+  color:var(--navy);
+  background:rgba(255,255,255,.58);
+}
+.hero .eyebrow{color:#9a6810}
+.hero h1{color:var(--navy)}
+.hero .hero-mission{color:var(--navy)}
+.hero .hero-mission strong{color:#a06c0f}
+.hero .lead{color:#52687c}
+.hero .btn.secondary{
+  color:var(--navy);
+  border-color:rgba(14,45,79,.28);
+  background:rgba(255,255,255,.58);
+}
+.hero .btn.secondary:hover{background:#fff}
+
+/* v9 — tela final da urna */
+.urna-fim{
+  min-height:130px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#111;
+}
+.urna-fim strong{
+  display:block;
+  font-size:clamp(64px,8vw,94px);
+  line-height:.95;
+  letter-spacing:.08em;
+  font-weight:950;
+}
+.urna-fim span{
+  display:block;
+  margin-top:16px;
+  color:#5d665f;
+  font-size:14px;
+  font-weight:700;
+}
+.urna-blank{
+  padding:22px 0;
+  font-size:24px;
+  font-weight:900;
+  color:#111;
+}
+.urna.ended .keyboard .key,
+.urna.ended .action.blank,
+.urna.ended .action.confirm{
+  opacity:.45;
+  cursor:not-allowed;
+}
+.urna.ended .action.correct{
+  box-shadow:0 0 0 3px rgba(233,135,74,.22);
+}
+
+
+
+
+#hnmap{max-width:1160px;margin:auto;background:#fff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.07)}
+#hnmap .top{padding:20px 22px 14px;border-bottom:1px solid #e5e7eb}
+#hnmap h2{margin:0 0 7px;font-size:clamp(22px,3vw,32px);line-height:1.08}
+#hnmap .sub{margin:0;color:#616161;font-size:14px;line-height:1.5}
+#hnmap .toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 22px;background:#fafafa;border-bottom:1px solid #ececec}
+#hnmap .switch{display:inline-flex;background:#e9e9e9;padding:3px;border-radius:999px}
+#hnmap .switch button{border:0;background:transparent;padding:8px 16px;border-radius:999px;font-weight:700;cursor:pointer;color:#555}
+#hnmap .switch button.on{background:#171717;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+#hnmap .metric{font-size:12px;color:#666}
+#hnmap .layout{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:18px;padding:18px 22px 20px;align-items:center}
+#hnmap .map-shell{position:relative;min-height:565px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff,#fafafa);border-radius:14px;overflow:hidden}
+#hnmap .map-wrap{width:min(100%,610px);padding:12px}
+#hnmap svg{display:block;width:100%;height:auto;max-height:620px}
+#hnmap svg path{stroke:#fff;stroke-width:1.4;vector-effect:non-scaling-stroke;cursor:pointer;transition:filter .12s,opacity .12s,stroke-width .12s}
+#hnmap svg path:hover{filter:brightness(.95)}#hnmap svg path:focus{outline:none !important}#hnmap svg path.active-focus{stroke:#ffffff;stroke-width:3.8;filter:drop-shadow(0 0 0.5px rgba(0,0,0,.4)) drop-shadow(0 2px 6px rgba(0,0,0,.28)) brightness(.96)}#hnmap svg path.region-active{stroke:#ffffff;stroke-width:3.8;filter:drop-shadow(0 0 0.5px rgba(0,0,0,.4)) drop-shadow(0 2px 6px rgba(0,0,0,.28)) brightness(.96)}#hnmap svg path.dimmed{opacity:.42}
+
+#hnmap .side{align-self:stretch;display:flex;flex-direction:column;justify-content:center;gap:14px}
+#hnmap .info{border:1px solid #e5e7eb;border-radius:14px;background:#fff;overflow:hidden}
+#hnmap .info-head{padding:14px 15px 11px;border-bottom:1px solid #e5e7eb}
+#hnmap .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#71717a;margin-bottom:3px}
+#hnmap .title{font-weight:800;font-size:23px}
+#hnmap .change{margin-top:7px;font-size:12px;font-weight:700;line-height:1.4}
+#hnmap table{width:100%;border-collapse:collapse;table-layout:fixed}
+#hnmap th{background:#f7f7f7;color:#555;font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;padding:8px 7px;border-bottom:1px solid #e5e7eb;text-align:left}
+#hnmap td{padding:9px 7px;border-bottom:1px solid #f0f0f0;vertical-align:top;font-size:12px}
+#hnmap tr:last-child td{border-bottom:0}
+#hnmap .yr{font-weight:800;width:46px}
+#hnmap .cand{display:block;font-weight:700;line-height:1.2} #hnmap .party{color:#777;font-weight:400}
+#hnmap .pct{display:block;font-size:16px;font-weight:900;margin-top:3px} #hnmap .votes{display:block;color:#777;font-size:10.5px;margin-top:2px}
+#hnmap .left .pct{color:#b91c1c} #hnmap .right .pct{color:#1d4ed8}
+#hnmap .regional-note{padding:9px 12px;background:#fff7ed;color:#7c2d12;font-size:11px;line-height:1.45;border-top:1px solid #fed7aa}
+#hnmap .legend-title{font-size:12px;font-weight:700;margin-bottom:7px} #hnmap .legend{height:13px;border-radius:999px;background:linear-gradient(90deg,#7f1d1d,#ef4444,#fdba74,#e5e7eb,#0f766e);border:1px solid rgba(0,0,0,.08)}
+#hnmap .legend-labels{display:flex;justify-content:space-between;font-size:10.5px;color:#737373;margin-top:5px}
+#hnmap .tip{position:absolute;z-index:20;pointer-events:none;width:390px;max-width:calc(100% - 20px);background:rgba(255,255,255,.99);border:1px solid #d1d5db;border-radius:12px;box-shadow:0 14px 38px rgba(0,0,0,.22);opacity:0;overflow:hidden;transition:opacity .06s}
+#hnmap .tip.show{opacity:1} #hnmap .tiphead{background:#18181b;color:#fff;padding:10px 12px} #hnmap .tiptitle{font-size:16px;font-weight:800} #hnmap .tipsub{font-size:10.5px;color:#d4d4d8;margin-top:2px}
+#hnmap .tip table th{font-size:9.5px;padding:6px} #hnmap .tip table td{font-size:10.5px;padding:7px 6px} #hnmap .tip .pct{font-size:13.5px} #hnmap .tip .votes{font-size:9.5px}
+#hnmap .foot{padding:0 22px 18px;color:#6b7280;font-size:10.8px;line-height:1.5} #hnmap .loading{padding:30px;color:#666;text-align:center}
+@media(max-width:880px){#hnmap .layout{grid-template-columns:1fr;padding:14px}#hnmap .map-shell{min-height:430px}#hnmap .tip{display:none}#hnmap .toolbar{padding:10px 14px}#hnmap .top{padding:18px 16px 12px}#hnmap .foot{padding:0 16px 16px}}
+
+#hnmap{font-family:inherit}
+#mapa-brasil{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#mapa-brasil .map-intro{max-width:850px;margin-bottom:26px}
+#mapa-brasil .map-intro .kicker{color:var(--blue);font-size:13px;text-transform:uppercase;letter-spacing:.14em;font-weight:900}
+#mapa-brasil .map-intro h2{font-size:clamp(31px,4vw,48px);line-height:1.08;margin:7px 0 10px}
+#mapa-brasil .map-intro p{color:var(--muted);font-size:17px;margin:0}
+
+
+/* v10 — navegação rápida e nova hierarquia pós-1º turno */
+.section-nav{
+  position:sticky;
+  top:0;
+  z-index:80;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 5px 18px rgba(14,45,79,.06);
+}
+.section-nav-inner{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding-top:10px;
+  padding-bottom:10px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.section-nav-inner::-webkit-scrollbar{display:none}
+.section-nav a{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:40px;
+  padding:9px 15px;
+  border-radius:999px;
+  text-decoration:none;
+  color:var(--navy);
+  background:#f3f7fa;
+  border:1px solid #d7e2eb;
+  font-size:13px;
+  font-weight:850;
+  transition:.18s ease;
+}
+.section-nav a:hover,
+.section-nav a:focus{
+  background:var(--navy);
+  color:#fff;
+  border-color:var(--navy);
+  outline:none;
+}
+#mapa-brasil,
+#segundo-turno,
+#resultados,
+#todos-eleitos,
+#sul-eleito{
+  scroll-margin-top:78px;
+}
+@media(max-width:700px){
+  .section-nav-inner{padding-left:16px;padding-right:16px}
+  .section-nav a{padding:8px 13px;font-size:12px;min-height:38px}
+}
+
 </style>
 </head>
 <body>
@@ -84,8 +258,8 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
       <div class="eyebrow">1º TURNO ENCERRADO</div>
       <h1>Santa Catarina fez suas escolhas.</h1>
       <div class="hero-mission">O primeiro turno terminou, <strong>mas a missão de informar continua.</strong></div>
-      <p class="lead">Confira os principais resultados, veja como ficou a representação do Sul catarinense e acompanhe as análises do HN Notícias sobre quem voltou, quem entrou, quem ficou de fora e quem mudou de cargo.</p>
-      <div class="btns"><a class="btn primary" href="#resultados">Ver resultados</a><a class="btn secondary" href="#segundo-turno">Ir para o 2º turno</a></div>
+      <p class="lead">Explore como o voto mudou no Brasil, simule o segundo turno e consulte os resultados e a nova representação de Santa Catarina e do Sul catarinense.</p>
+      <div class="btns"><a class="btn primary" href="#mapa-brasil">Explorar mapa</a><a class="btn secondary" href="#segundo-turno">Simular 2º turno</a></div>
     </div>
   </div>
 </header>
@@ -98,7 +272,83 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
   </div>
 </div>
 
+
+<nav class="section-nav" aria-label="Navegação rápida do Sul na Urna">
+  <div class="wrap section-nav-inner">
+    <a href="#mapa-brasil">Mapa do Brasil</a>
+    <a href="#segundo-turno">Simulador 2º turno</a>
+    <a href="#resultados">Resultados de SC</a>
+    <a href="#todos-eleitos">Deputados eleitos</a>
+    <a href="#sul-eleito">Representação do Sul</a>
+  </div>
+</nav>
+
 <main>
+<section id="mapa-brasil">
+  <div class="wrap">
+    <div class="map-intro">
+      <div class="kicker">Brasil em perspectiva</div>
+      <h2>Veja no mapa como o voto mudou nas três últimas eleições</h2>
+      <p>O comparativo reúne 2018, 2022 e 2026 e permite alternar entre a leitura por estado e por região. Passe o mouse — ou toque no celular — para explorar os números.</p>
+    </div>
+    <div id="hnmap">
+ <div class="top">
+  <h2>Como o voto presidencial mudou no Brasil de 2018 a 2026?</h2>
+  <p class="sub">Primeiro turno. Compare o campo petista e o bolsonarismo por estado ou pelas cinco regiões do país, mantendo o nome e o partido de cada candidato em cada eleição.</p>
+ </div>
+ <div class="toolbar">
+  <div class="switch"><button class="on" data-mode="estado">Por estado</button><button data-mode="regiao">Por região</button></div>
+  <div class="metric" id="metric">Cor: variação do campo petista em pontos percentuais, 2022 → 2026</div>
+ </div>
+ <div class="layout">
+  <div class="map-shell">
+   <div class="map-wrap" id="mapwrap"><div class="loading">Carregando mapa do Brasil…</div></div>
+   <div class="tip" id="tip"></div>
+  </div>
+  <div class="side">
+   <div class="info" id="info"><div class="info-head"><div class="kicker">Comparativo</div><div class="title">Passe o mouse no mapa</div><div class="change">No celular, toque no estado.</div></div></div>
+   <div><div class="legend-title" id="legendtitle">Variação em pontos percentuais</div><div class="legend"></div><div class="legend-labels"><span>maior queda</span><span>estável</span><span>ganho</span></div></div>
+  </div>
+ </div>
+ <div class="foot"><b>Critério:</b> “campo petista” = candidato do PT (Haddad em 2018; Lula em 2022 e 2026). “Bolsonarismo” = Jair Bolsonaro em 2018/2022 e Flávio Bolsonaro em 2026. Não representa a soma de toda a esquerda ou de toda a direita. <b>Fonte:</b> Justiça Eleitoral/TSE, resultados do 1º turno de 2018, 2022 e totalização final de 2026. Auditoria interna: totais das 27 UFs conferidos com os totais nacionais após inclusão do voto no exterior. No modo Região, os números são a soma exata dos estados; não exibimos percentual regional para evitar recalcular percentuais a partir de valores arredondados.</div>
+</div>
+  </div>
+</section>
+
+<section id="segundo-turno" class="president">
+  <div class="wrap">
+    <div class="section-title"><div class="kicker">A eleição continua</div><h2>Presidência será decidida no segundo turno</h2><p>Em Santa Catarina, a disputa pelo Governo foi encerrada no primeiro turno. Para Presidente da República, o eleitor volta às urnas em 25 de outubro.</p></div>
+    <div class="duel">
+      <article class="candidate">
+        <div class="portrait-wrap">
+          <img class="portrait" src="https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/280002542548/BR" alt="Lula">
+          <div class="circle">13</div>
+        </div>
+        <h3>Lula</h3><p>PT</p>
+      </article>
+      <div class="versus">×</div>
+      <article class="candidate">
+        <div class="portrait-wrap">
+          <img class="portrait" src="https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/280002551544/BR" alt="Flávio Bolsonaro">
+          <div class="circle">22</div>
+        </div>
+        <h3>Flávio Bolsonaro</h3><p>PL</p>
+      </article>
+    </div>
+    <div style="text-align:center;margin-top:18px"><a class="btn dark" target="_blank" rel="noopener" href="https://hnnoticias.com.br/politica/flavio-bolsonaro-e-lula-disputarao-segundo-turno-para-a-presidencia/">Leia sobre o segundo turno no HN</a></div>
+
+    <div class="urna-wrap">
+      <div class="urna" aria-label="Simulador de urna para presidente">
+        <div class="urna-screen"><div style="font-size:13px;font-weight:800;color:#58625c">SEU VOTO PARA</div><h3>PRESIDENTE</h3><div class="digits"><div class="digit" id="d1"></div><div class="digit" id="d2"></div></div><div class="urna-info" id="urnaInfo">Digite dois números.</div></div>
+        <div class="keyboard"><button class="key" onclick="press('1')">1</button><button class="key" onclick="press('2')">2</button><button class="key" onclick="press('3')">3</button><button class="key" onclick="press('4')">4</button><button class="key" onclick="press('5')">5</button><button class="key" onclick="press('6')">6</button><button class="key" onclick="press('7')">7</button><button class="key" onclick="press('8')">8</button><button class="key" onclick="press('9')">9</button><button class="key zero" onclick="press('0')">0</button></div>
+        <div class="actions"><button class="action blank" onclick="blankVote()">BRANCO</button><button class="action correct" onclick="correct()">CORRIGE</button><button class="action confirm" onclick="confirmVote()">CONFIRMA</button></div>
+        <div class="disclaimer">Simulação educativa. O voto não é oficial. As escolhas são contabilizadas apenas de forma agregada para estatísticas do projeto, sem identificar o eleitor.</div>
+      </div>
+      <aside class="side-note"><h3>Treine antes de votar</h3><p>O simulador foi reduzido ao cargo em disputa no segundo turno em Santa Catarina: Presidente da República.</p><ul><li>Digite <strong>13</strong> ou <strong>22</strong>.</li><li>Confira o nome exibido na tela.</li><li>Use CORRIGE para recomeçar.</li><li>CONFIRMA mostra o FIM e encerra apenas esta simulação.</li></ul><div class="date-box"><div>Segundo turno</div><div class="date">25 OUT</div><div>2026 • das 8h às 17h</div></div></aside>
+    </div>
+  </div>
+</section>
+
 <section id="resultados">
   <div class="wrap">
     <div class="section-title"><div class="kicker">Santa Catarina decidiu</div><h2>O resultado do primeiro turno</h2><p>Com 100% das seções apuradas, o Estado definiu governador, duas vagas ao Senado e as bancadas de deputados federais e estaduais.</p></div>
@@ -131,7 +381,7 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
   </div>
 </section>
 
-<section class="band">
+<section id="sul-eleito" class="band">
   <div class="wrap">
     <div class="section-title"><div class="kicker">Representação regional</div><h2>O Sul ganha força em Brasília</h2><p>Sete dos 16 deputados federais eleitos por Santa Catarina têm ligação direta ou forte base política no Sul catarinense. Clique em qualquer card para ver a análise completa no HN Notícias.</p></div>
     <div class="region-grid">
@@ -181,39 +431,11 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
   </div>
 </div>
 
-<section id="segundo-turno" class="president">
-  <div class="wrap">
-    <div class="section-title"><div class="kicker">A eleição continua</div><h2>Presidência será decidida no segundo turno</h2><p>Em Santa Catarina, a disputa pelo Governo foi encerrada no primeiro turno. Para Presidente da República, o eleitor volta às urnas em 25 de outubro.</p></div>
-    <div class="duel">
-      <article class="candidate">
-        <div class="portrait-wrap">
-          <img class="portrait" src="https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/280002542548/BR" alt="Lula">
-          <div class="circle">13</div>
-        </div>
-        <h3>Lula</h3><p>PT</p>
-      </article>
-      <div class="versus">×</div>
-      <article class="candidate">
-        <div class="portrait-wrap">
-          <img class="portrait" src="https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/280002551544/BR" alt="Flávio Bolsonaro">
-          <div class="circle">22</div>
-        </div>
-        <h3>Flávio Bolsonaro</h3><p>PL</p>
-      </article>
-    </div>
-    <div style="text-align:center;margin-top:18px"><a class="btn dark" target="_blank" rel="noopener" href="https://hnnoticias.com.br/politica/flavio-bolsonaro-e-lula-disputarao-segundo-turno-para-a-presidencia/">Leia sobre o segundo turno no HN</a></div>
 
-    <div class="urna-wrap">
-      <div class="urna" aria-label="Simulador de urna para presidente">
-        <div class="urna-screen"><div style="font-size:13px;font-weight:800;color:#58625c">SEU VOTO PARA</div><h3>PRESIDENTE</h3><div class="digits"><div class="digit" id="d1"></div><div class="digit" id="d2"></div></div><div class="urna-info" id="urnaInfo">Digite dois números.</div></div>
-        <div class="keyboard"><button class="key" onclick="press('1')">1</button><button class="key" onclick="press('2')">2</button><button class="key" onclick="press('3')">3</button><button class="key" onclick="press('4')">4</button><button class="key" onclick="press('5')">5</button><button class="key" onclick="press('6')">6</button><button class="key" onclick="press('7')">7</button><button class="key" onclick="press('8')">8</button><button class="key" onclick="press('9')">9</button><button class="key zero" onclick="press('0')">0</button></div>
-        <div class="actions"><button class="action blank" onclick="blankVote()">BRANCO</button><button class="action correct" onclick="correct()">CORRIGE</button><button class="action confirm" onclick="confirmVote()">CONFIRMA</button></div>
-        <div class="disclaimer">Simulação educativa. Nenhum voto é registrado, transmitido ou armazenado.</div>
-      </div>
-      <aside class="side-note"><h3>Treine antes de votar</h3><p>O simulador foi reduzido ao cargo em disputa no segundo turno em Santa Catarina: Presidente da República.</p><ul><li>Digite <strong>13</strong> ou <strong>22</strong>.</li><li>Confira o nome exibido na tela.</li><li>Use CORRIGE para recomeçar.</li><li>CONFIRMA encerra apenas esta simulação.</li></ul><div class="date-box"><div>Segundo turno</div><div class="date">25 OUT</div><div>2026 • das 8h às 17h</div></div></aside>
-    </div>
-  </div>
-</section>
+
+
+
+
 
 <section>
   <div class="wrap">
@@ -227,26 +449,182 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
 <div class="notice" id="notice"></div>
 <script>
 let vote='';
+let blank=false;
+let finished=false;
+let runStarted=false;
+
+const finalSound=new Audio('assets/audio/fim-urna.mp3');
+finalSound.preload='auto';
+
+const SIM_CANDIDATES={
+  '13':{
+    candidate_id:'280002542548',
+    candidate_number:'13',
+    candidate_name:'Lula',
+    party:'PT'
+  },
+  '22':{
+    candidate_id:'280002551544',
+    candidate_number:'22',
+    candidate_name:'Flávio Bolsonaro',
+    party:'PL'
+  }
+};
+
+function recordSim(event,payload={}){
+  try{
+    if(window.SNU_DATA && typeof window.SNU_DATA.recordSimulatorEvent==='function'){
+      const result=window.SNU_DATA.recordSimulatorEvent({event,...payload});
+      if(result && typeof result.catch==='function'){
+        result.catch(err=>console.warn('[Sul na Urna] Falha ao registrar estatística da urna:',err));
+      }
+      return result;
+    }
+  }catch(err){
+    console.warn('[Sul na Urna] Falha ao registrar estatística da urna:',err);
+  }
+  return Promise.resolve();
+}
+
+function startRunOnce(){
+  if(runStarted)return;
+  runStarted=true;
+  recordSim('start');
+}
+
+function playFinalSound(){
+  try{
+    finalSound.currentTime=0;
+    const p=finalSound.play();
+    if(p && typeof p.catch==='function')p.catch(()=>{});
+  }catch(e){}
+}
+
 function render(){
-const d1=document.getElementById('d1'),d2=document.getElementById('d2'),info=document.getElementById('urnaInfo');
-d1.textContent=vote[0]||'';
-d2.textContent=vote[1]||'';
-if(vote==='13'){
-info.innerHTML='<div class="urna-candidate"><img src="https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/280002542548/BR" alt="Lula"><div class="urna-candidate-text"><strong>LULA</strong><span>PT • confira e pressione CONFIRMA</span></div></div>';
-}else if(vote==='22'){
-info.innerHTML='<div class="urna-candidate"><img src="https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/280002551544/BR" alt="Flávio Bolsonaro"><div class="urna-candidate-text"><strong>FLÁVIO BOLSONARO</strong><span>PL • confira e pressione CONFIRMA</span></div></div>';
-}else if(vote.length===2){
-info.innerHTML='<strong>NÚMERO NÃO CADASTRADO NESTA SIMULAÇÃO</strong><br><span style="color:#647080">Use CORRIGE para tentar novamente.</span>';
-}else{
-info.textContent='Digite dois números.';
+  const d1=document.getElementById('d1');
+  const d2=document.getElementById('d2');
+  const info=document.getElementById('urnaInfo');
+  const urna=document.querySelector('.urna[aria-label="Simulador de urna para presidente"]');
+  const office=urna ? urna.querySelector('.urna-screen h3') : null;
+  const digits=urna ? urna.querySelector('.digits') : null;
+
+  if(!d1||!d2||!info)return;
+
+  if(finished){
+    if(urna)urna.classList.add('ended');
+    if(office)office.textContent='PRESIDENTE';
+    if(digits)digits.style.display='none';
+    info.innerHTML='<div class="urna-fim" role="status" aria-live="polite"><strong>FIM</strong><span>Simulação concluída. Toque em CORRIGE para simular novamente.</span></div>';
+    return;
+  }
+
+  if(urna)urna.classList.remove('ended');
+  if(office)office.textContent='PRESIDENTE';
+  if(digits)digits.style.display='flex';
+
+  d1.textContent=vote[0]||'';
+  d2.textContent=vote[1]||'';
+
+  if(blank){
+    info.innerHTML='<div class="urna-blank">VOTO EM BRANCO<br><span style="font-size:14px;color:#647080;font-weight:700">Pressione CONFIRMA para concluir.</span></div>';
+  }else if(vote==='13'){
+    info.innerHTML='<div class="urna-candidate"><img src="https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/280002542548/BR" alt="Lula"><div class="urna-candidate-text"><strong>LULA</strong><span>PT • confira e pressione CONFIRMA</span></div></div>';
+  }else if(vote==='22'){
+    info.innerHTML='<div class="urna-candidate"><img src="https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/280002551544/BR" alt="Flávio Bolsonaro"><div class="urna-candidate-text"><strong>FLÁVIO BOLSONARO</strong><span>PL • confira e pressione CONFIRMA</span></div></div>';
+  }else if(vote.length===2){
+    info.innerHTML='<strong>NÚMERO NÃO CADASTRADO NESTA SIMULAÇÃO</strong><br><span style="color:#647080">Use CORRIGE para tentar novamente.</span>';
+  }else{
+    info.textContent='Digite dois números.';
+  }
 }
+
+function press(n){
+  if(finished)return;
+  startRunOnce();
+  if(blank){blank=false;vote='';}
+  if(vote.length<2){vote+=n;render();}
 }
-function press(n){if(vote.length<2){vote+=n;render()}}
-function correct(){vote='';render()}
-function toast(msg){const n=document.getElementById('notice');n.textContent=msg;n.classList.add('show');setTimeout(()=>n.classList.remove('show'),2800)}
-function blankVote(){vote='';render();toast('Voto em branco simulado. Nenhum dado foi registrado.')}
-function confirmVote(){if(vote==='13'||vote==='22'){toast('FIM — voto apenas simulado. Nenhum dado foi registrado.');vote='';setTimeout(render,700)}else if(vote.length===2){toast('Nesta simulação, apenas 13 e 22 estão cadastrados.')}else{toast('Digite dois números antes de confirmar.')}}
+
+function correct(){
+  if(finished){
+    recordSim('restart');
+    vote='';
+    blank=false;
+    finished=false;
+    runStarted=false;
+    render();
+    return;
+  }
+  if(vote || blank){
+    recordSim('correct');
+  }
+  vote='';
+  blank=false;
+  render();
+}
+
+function toast(msg){
+  const n=document.getElementById('notice');
+  if(!n)return;
+  n.textContent=msg;
+  n.classList.add('show');
+  setTimeout(()=>n.classList.remove('show'),2800);
+}
+
+function blankVote(){
+  if(finished)return;
+  startRunOnce();
+  vote='';
+  blank=true;
+  render();
+}
+
+function finishSimulation(kind,candidate=null){
+  finished=true;
+  vote='';
+  blank=false;
+  render();
+  playFinalSound();
+
+  const payload={
+    step:'presidente',
+    kind,
+    candidate_id:candidate ? candidate.candidate_id : null,
+    candidate_number:candidate ? candidate.candidate_number : null,
+    candidate_name:candidate ? candidate.candidate_name : null,
+    party:candidate ? candidate.party : null
+  };
+
+  Promise.resolve(recordSim('confirm',payload))
+    .finally(()=>recordSim('complete'));
+}
+
+function confirmVote(){
+  if(finished)return;
+
+  if(blank){
+    startRunOnce();
+    finishSimulation('blank',null);
+    return;
+  }
+
+  if(vote==='13' || vote==='22'){
+    startRunOnce();
+    finishSimulation('candidate',SIM_CANDIDATES[vote]);
+    return;
+  }
+
+  if(vote.length===2){
+    toast('Nesta simulação, apenas 13 e 22 estão cadastrados.');
+  }else{
+    toast('Digite dois números ou escolha BRANCO antes de confirmar.');
+  }
+}
+
 render();
+
+/* Registra visualização somente depois de config.js/data-service.js estarem carregados. */
+window.addEventListener('load',()=>recordSim('view'),{once:true});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -358,5 +736,112 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 </script>
 
+
+<script>
+(function(){
+const D={"ac":{"nome":"Acre","regiao":"Norte","2018":{"a":"Fernando Haddad","ap":"PT","av":78170,"app":18.53,"b":"Jair Bolsonaro","bp":"PSL","bv":262508,"bpp":62.24},"2022":{"a":"Lula","ap":"PT","av":129022,"app":29.26,"b":"Jair Bolsonaro","bp":"PL","bv":275582,"bpp":62.5},"2026":{"a":"Lula","ap":"PT","av":134770,"app":28.73,"b":"Flávio Bolsonaro","bp":"PL","bv":302807,"bpp":64.56}},"al":{"nome":"Alagoas","regiao":"Nordeste","2018":{"a":"Fernando Haddad","ap":"PT","av":687247,"app":44.75,"b":"Jair Bolsonaro","bp":"PSL","bv":528355,"bpp":34.4},"2022":{"a":"Lula","ap":"PT","av":974156,"app":56.5,"b":"Jair Bolsonaro","bp":"PL","bv":621515,"bpp":36.05},"2026":{"a":"Lula","ap":"PT","av":995459,"app":54.73,"b":"Flávio Bolsonaro","bp":"PL","bv":735718,"bpp":40.45}},"ap":{"nome":"Amapá","regiao":"Norte","2018":{"a":"Fernando Haddad","ap":"PT","av":134287,"app":32.77,"b":"Jair Bolsonaro","bp":"PSL","bv":166935,"bpp":40.74},"2022":{"a":"Lula","ap":"PT","av":197382,"app":45.67,"b":"Jair Bolsonaro","bp":"PL","bv":187621,"bpp":43.41},"2026":{"a":"Lula","ap":"PT","av":212503,"app":45.71,"b":"Flávio Bolsonaro","bp":"PL","bv":212278,"bpp":45.67}},"am":{"nome":"Amazonas","regiao":"Norte","2018":{"a":"Fernando Haddad","ap":"PT","av":746998,"app":40.3,"b":"Jair Bolsonaro","bp":"PSL","bv":805902,"bpp":43.48},"2022":{"a":"Lula","ap":"PT","av":1019684,"app":49.58,"b":"Jair Bolsonaro","bp":"PL","bv":880198,"bpp":42.8},"2026":{"a":"Lula","ap":"PT","av":1046996,"app":48.23,"b":"Flávio Bolsonaro","bp":"PL","bv":976764,"bpp":45.0}},"ba":{"nome":"Bahia","regiao":"Nordeste","2018":{"a":"Fernando Haddad","ap":"PT","av":4441955,"app":60.28,"b":"Jair Bolsonaro","bp":"PSL","bv":1725140,"bpp":23.41},"2022":{"a":"Lula","ap":"PT","av":5873081,"app":69.73,"b":"Jair Bolsonaro","bp":"PL","bv":2047599,"bpp":24.31},"2026":{"a":"Lula","ap":"PT","av":5664771,"app":66.17,"b":"Flávio Bolsonaro","bp":"PL","bv":2442585,"bpp":28.53}},"ce":{"nome":"Ceará","regiao":"Nordeste","2018":{"a":"Fernando Haddad","ap":"PT","av":1616492,"app":33.12,"b":"Jair Bolsonaro","bp":"PSL","bv":1061075,"bpp":21.74},"2022":{"a":"Lula","ap":"PT","av":3578355,"app":65.91,"b":"Jair Bolsonaro","bp":"PL","bv":1377827,"bpp":25.38},"2026":{"a":"Lula","ap":"PT","av":3555263,"app":63.29,"b":"Flávio Bolsonaro","bp":"PL","bv":1756850,"bpp":31.27}},"df":{"nome":"Distrito Federal","regiao":"Centro-Oeste","2018":{"a":"Fernando Haddad","ap":"PT","av":190508,"app":11.87,"b":"Jair Bolsonaro","bp":"PSL","bv":936494,"bpp":58.37},"2022":{"a":"Lula","ap":"PT","av":649534,"app":36.85,"b":"Jair Bolsonaro","bp":"PL","bv":910397,"bpp":51.65},"2026":{"a":"Lula","ap":"PT","av":675627,"app":38.11,"b":"Flávio Bolsonaro","bp":"PL","bv":909616,"bpp":51.31}},"es":{"nome":"Espírito Santo","regiao":"Sudeste","2018":{"a":"Fernando Haddad","ap":"PT","av":495868,"app":24.2,"b":"Jair Bolsonaro","bp":"PSL","bv":1122131,"bpp":54.76},"2022":{"a":"Lula","ap":"PT","av":897348,"app":40.4,"b":"Jair Bolsonaro","bp":"PL","bv":1160030,"bpp":52.23},"2026":{"a":"Lula","ap":"PT","av":850028,"app":37.76,"b":"Flávio Bolsonaro","bp":"PL","bv":1233194,"bpp":54.78}},"go":{"nome":"Goiás","regiao":"Centro-Oeste","2018":{"a":"Fernando Haddad","ap":"PT","av":713535,"app":21.86,"b":"Jair Bolsonaro","bp":"PSL","bv":1868686,"bpp":57.24},"2022":{"a":"Lula","ap":"PT","av":1454723,"app":39.51,"b":"Jair Bolsonaro","bp":"PL","bv":1920203,"bpp":52.16},"2026":{"a":"Lula","ap":"PT","av":1188880,"app":31.06,"b":"Flávio Bolsonaro","bp":"PL","bv":2051888,"bpp":53.6}},"ma":{"nome":"Maranhão","regiao":"Nordeste","2018":{"a":"Fernando Haddad","ap":"PT","av":2062592,"app":61.26,"b":"Jair Bolsonaro","bp":"PSL","bv":817511,"bpp":24.28},"2022":{"a":"Lula","ap":"PT","av":2603454,"app":68.84,"b":"Jair Bolsonaro","bp":"PL","bv":983861,"bpp":26.02},"2026":{"a":"Lula","ap":"PT","av":2566301,"app":63.99,"b":"Flávio Bolsonaro","bp":"PL","bv":1239040,"bpp":30.9}},"mt":{"nome":"Mato Grosso","regiao":"Centro-Oeste","2018":{"a":"Fernando Haddad","ap":"PT","av":404604,"app":24.76,"b":"Jair Bolsonaro","bp":"PSL","bv":981119,"bpp":60.04},"2022":{"a":"Lula","ap":"PT","av":633748,"app":34.39,"b":"Jair Bolsonaro","bp":"PL","bv":1102866,"bpp":59.84},"2026":{"a":"Lula","ap":"PT","av":581681,"app":29.18,"b":"Flávio Bolsonaro","bp":"PL","bv":1298581,"bpp":65.15}},"ms":{"nome":"Mato Grosso do Sul","regiao":"Centro-Oeste","2018":{"a":"Fernando Haddad","ap":"PT","av":333407,"app":23.87,"b":"Jair Bolsonaro","bp":"PSL","bv":769116,"bpp":55.06},"2022":{"a":"Lula","ap":"PT","av":588323,"app":39.04,"b":"Jair Bolsonaro","bp":"PL","bv":794206,"bpp":52.7},"2026":{"a":"Lula","ap":"PT","av":516855,"app":34.68,"b":"Flávio Bolsonaro","bp":"PL","bv":873351,"bpp":58.6}},"mg":{"nome":"Minas Gerais","regiao":"Sudeste","2018":{"a":"Fernando Haddad","ap":"PT","av":3037957,"app":27.65,"b":"Jair Bolsonaro","bp":"PSL","bv":5308047,"bpp":48.31},"2022":{"a":"Lula","ap":"PT","av":5802571,"app":48.29,"b":"Jair Bolsonaro","bp":"PL","bv":5239264,"bpp":43.6},"2026":{"a":"Lula","ap":"PT","av":5188936,"app":43.33,"b":"Flávio Bolsonaro","bp":"PL","bv":5777548,"bpp":48.24}},"pa":{"nome":"Pará","regiao":"Norte","2018":{"a":"Fernando Haddad","ap":"PT","av":1714822,"app":41.39,"b":"Jair Bolsonaro","bp":"PSL","bv":1499294,"bpp":36.19},"2022":{"a":"Lula","ap":"PT","av":2443730,"app":52.22,"b":"Jair Bolsonaro","bp":"PL","bv":1884673,"bpp":40.27},"2026":{"a":"Lula","ap":"PT","av":2427237,"app":49.91,"b":"Flávio Bolsonaro","bp":"PL","bv":2163957,"bpp":44.5}},"pb":{"nome":"Paraíba","regiao":"Nordeste","2018":{"a":"Fernando Haddad","ap":"PT","av":984398,"app":45.46,"b":"Jair Bolsonaro","bp":"PSL","bv":677718,"bpp":31.3},"2022":{"a":"Lula","ap":"PT","av":1554868,"app":64.21,"b":"Jair Bolsonaro","bp":"PL","bv":717416,"bpp":29.62},"2026":{"a":"Lula","ap":"PT","av":1541127,"app":61.31,"b":"Flávio Bolsonaro","bp":"PL","bv":831377,"bpp":33.07}},"pr":{"nome":"Paraná","regiao":"Sul","2018":{"a":"Fernando Haddad","ap":"PT","av":1210974,"app":19.7,"b":"Jair Bolsonaro","bp":"PSL","bv":3496448,"bpp":56.89},"2022":{"a":"Lula","ap":"PT","av":2363492,"app":35.99,"b":"Jair Bolsonaro","bp":"PL","bv":3628612,"bpp":55.26},"2026":{"a":"Lula","ap":"PT","av":2054597,"app":31.2,"b":"Flávio Bolsonaro","bp":"PL","bv":3945345,"bpp":59.91}},"pe":{"nome":"Pernambuco","regiao":"Nordeste","2018":{"a":"Fernando Haddad","ap":"PT","av":2309104,"app":48.87,"b":"Jair Bolsonaro","bp":"PSL","bv":1444685,"bpp":30.57},"2022":{"a":"Lula","ap":"PT","av":3558322,"app":65.27,"b":"Jair Bolsonaro","bp":"PL","bv":1630938,"bpp":29.91},"2026":{"a":"Lula","ap":"PT","av":3553971,"app":63.45,"b":"Flávio Bolsonaro","bp":"PL","bv":1738043,"bpp":31.03}},"pi":{"nome":"Piauí","regiao":"Nordeste","2018":{"a":"Fernando Haddad","ap":"PT","av":1172147,"app":63.4,"b":"Jair Bolsonaro","bp":"PSL","bv":346944,"bpp":18.76},"2022":{"a":"Lula","ap":"PT","av":1518008,"app":74.25,"b":"Jair Bolsonaro","bp":"PL","bv":406897,"bpp":19.9},"2026":{"a":"Lula","ap":"PT","av":1523710,"app":70.99,"b":"Flávio Bolsonaro","bp":"PL","bv":517028,"bpp":24.09}},"rj":{"nome":"Rio de Janeiro","regiao":"Sudeste","2018":{"a":"Fernando Haddad","ap":"PT","av":1255425,"app":14.69,"b":"Jair Bolsonaro","bp":"PSL","bv":5107735,"bpp":59.79},"2022":{"a":"Lula","ap":"PT","av":3847143,"app":40.68,"b":"Jair Bolsonaro","bp":"PL","bv":4831246,"bpp":51.09},"2026":{"a":"Lula","ap":"PT","av":3693021,"app":39.41,"b":"Flávio Bolsonaro","bp":"PL","bv":4966844,"bpp":53.01}},"rn":{"nome":"Rio Grande do Norte","regiao":"Nordeste","2018":{"a":"Fernando Haddad","ap":"PT","av":738165,"app":41.19,"b":"Jair Bolsonaro","bp":"PSL","bv":541448,"bpp":30.21},"2022":{"a":"Lula","ap":"PT","av":1264179,"app":62.98,"b":"Jair Bolsonaro","bp":"PL","bv":622731,"bpp":31.02},"2026":{"a":"Lula","ap":"PT","av":1237963,"app":59.75,"b":"Flávio Bolsonaro","bp":"PL","bv":720493,"bpp":34.77}},"rs":{"nome":"Rio Grande do Sul","regiao":"Sul","2018":{"a":"Fernando Haddad","ap":"PT","av":1453291,"app":22.81,"b":"Jair Bolsonaro","bp":"PSL","bv":3353623,"bpp":52.63},"2022":{"a":"Lula","ap":"PT","av":2806672,"app":42.28,"b":"Jair Bolsonaro","bp":"PL","bv":3245023,"bpp":48.89},"2026":{"a":"Lula","ap":"PT","av":2294759,"app":35.73,"b":"Flávio Bolsonaro","bp":"PL","bv":3573783,"bpp":55.64}},"ro":{"nome":"Rondônia","regiao":"Norte","2018":{"a":"Fernando Haddad","ap":"PT","av":176107,"app":20.36,"b":"Jair Bolsonaro","bp":"PSL","bv":538311,"bpp":62.24},"2022":{"a":"Lula","ap":"PT","av":261749,"app":28.98,"b":"Jair Bolsonaro","bp":"PL","bv":581306,"bpp":64.36},"2026":{"a":"Lula","ap":"PT","av":250667,"app":25.89,"b":"Flávio Bolsonaro","bp":"PL","bv":652988,"bpp":67.45}},"rr":{"nome":"Roraima","regiao":"Norte","2018":{"a":"Fernando Haddad","ap":"PT","av":49406,"app":17.85,"b":"Jair Bolsonaro","bp":"PSL","bv":174306,"bpp":62.97},"2022":{"a":"Lula","ap":"PT","av":68760,"app":23.05,"b":"Jair Bolsonaro","bp":"PL","bv":207587,"bpp":69.57},"2026":{"a":"Lula","ap":"PT","av":74420,"app":22.86,"b":"Flávio Bolsonaro","bp":"PL","bv":231322,"bpp":71.06}},"sc":{"nome":"Santa Catarina","regiao":"Sul","2018":{"a":"Fernando Haddad","ap":"PT","av":598578,"app":15.13,"b":"Jair Bolsonaro","bp":"PSL","bv":2603665,"bpp":65.82},"2022":{"a":"Lula","ap":"PT","av":1279216,"app":29.54,"b":"Jair Bolsonaro","bp":"PL","bv":2694406,"bpp":62.21},"2026":{"a":"Lula","ap":"PT","av":1127168,"app":25.04,"b":"Flávio Bolsonaro","bp":"PL","bv":3000020,"bpp":66.65}},"sp":{"nome":"São Paulo","regiao":"Sudeste","2018":{"a":"Fernando Haddad","ap":"PT","av":3833982,"app":16.42,"b":"Jair Bolsonaro","bp":"PSL","bv":12378012,"bpp":53.0},"2022":{"a":"Lula","ap":"PT","av":10490032,"app":40.89,"b":"Jair Bolsonaro","bp":"PL","bv":12239989,"bpp":47.71},"2026":{"a":"Lula","ap":"PT","av":9505413,"app":38.2,"b":"Flávio Bolsonaro","bp":"PL","bv":12922023,"bpp":51.93}},"se":{"nome":"Sergipe","regiao":"Nordeste","2018":{"a":"Fernando Haddad","ap":"PT","av":571234,"app":50.09,"b":"Jair Bolsonaro","bp":"PSL","bv":310310,"bpp":27.21},"2022":{"a":"Lula","ap":"PT","av":828716,"app":63.82,"b":"Jair Bolsonaro","bp":"PL","bv":378610,"bpp":29.16},"2026":{"a":"Lula","ap":"PT","av":856019,"app":62.75,"b":"Flávio Bolsonaro","bp":"PL","bv":417839,"bpp":30.63}},"to":{"nome":"Tocantins","regiao":"Norte","2018":{"a":"Fernando Haddad","ap":"PT","av":311212,"app":41.12,"b":"Jair Bolsonaro","bp":"PSL","bv":337782,"bpp":44.64},"2022":{"a":"Lula","ap":"PT","av":434303,"app":50.4,"b":"Jair Bolsonaro","bp":"PL","bv":379194,"bpp":44.0},"2026":{"a":"Lula","ap":"PT","av":404009,"app":43.42,"b":"Flávio Bolsonaro","bp":"PL","bv":469321,"bpp":50.44}}}, R={"Norte":["ac","ap","am","pa","ro","rr","to"],"Nordeste":["al","ba","ce","ma","pb","pe","pi","rn","se"],"Centro-Oeste":["df","go","mt","ms"],"Sudeste":["es","mg","rj","sp"],"Sul":["pr","rs","sc"]};
+let mode="estado";
+const wrap=document.getElementById("mapwrap"),tip=document.getElementById("tip"),info=document.getElementById("info"),metric=document.getElementById("metric"),legendtitle=document.getElementById("legendtitle");
+const nf=new Intl.NumberFormat("pt-BR");
+function pct(n){return n.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})+"%"}
+function pp(n){return (n>0?"+":"")+n.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})+" p.p."}
+function pc(n){return (n>0?"+":"")+n.toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1})+"%"}
+function signed(n){return (n>0?"+":"")+nf.format(n)}
+function colorState(x){if(x<=-7)return"#7f1d1d";if(x<=-5)return"#b91c1c";if(x<=-3.5)return"#dc2626";if(x<=-2)return"#ef4444";if(x<=-1)return"#fb923c";if(x<=-.25)return"#fdba74";if(x<.25)return"#e5e7eb";if(x<1)return"#5eead4";return"#0f766e"}
+function colorRegion(x){if(x<=-14)return"#7f1d1d";if(x<=-10)return"#b91c1c";if(x<=-7)return"#dc2626";if(x<=-3)return"#ef4444";if(x<=-1)return"#fb923c";if(x<=-.25)return"#fdba74";if(x<.25)return"#e5e7eb";if(x<2)return"#5eead4";return"#0f766e"}
+function regionData(name){
+ const ids=R[name], out={nome:name,rows:{}};
+ ["2018","2022","2026"].forEach(y=>{
+   const first=D[ids[0]][y];
+   out.rows[y]={a:first.a,ap:first.ap,b:first.b,bp:first.bp,
+     av:ids.reduce((s,id)=>s+D[id][y].av,0),bv:ids.reduce((s,id)=>s+D[id][y].bv,0)};
+ });
+ out.deltaA=out.rows["2026"].av-out.rows["2022"].av;
+ out.deltaB=out.rows["2026"].bv-out.rows["2022"].bv;
+ out.deltaAPct=out.deltaA/out.rows["2022"].av*100;
+ out.deltaBPct=out.deltaB/out.rows["2022"].bv*100;
+ return out;
+}
+function stateTable(d){
+ return `<table><thead><tr><th style="width:44px">Ano</th><th>Campo petista</th><th>Bolsonarismo</th></tr></thead><tbody>${["2018","2022","2026"].map(y=>{let r=d[y];return `<tr><td class="yr">${y}</td><td class="left"><span class="cand">${r.a} <span class="party">(${r.ap})</span></span><span class="pct">${pct(r.app)}</span><span class="votes">${nf.format(r.av)} votos</span></td><td class="right"><span class="cand">${r.b} <span class="party">(${r.bp})</span></span><span class="pct">${pct(r.bpp)}</span><span class="votes">${nf.format(r.bv)} votos</span></td></tr>`}).join("")}</tbody></table>`;
+}
+function regionTable(d){
+ return `<table><thead><tr><th style="width:44px">Ano</th><th>Campo petista</th><th>Bolsonarismo</th></tr></thead><tbody>${["2018","2022","2026"].map(y=>{let r=d.rows[y];return `<tr><td class="yr">${y}</td><td class="left"><span class="cand">${r.a} <span class="party">(${r.ap})</span></span><span class="pct">${nf.format(r.av)}</span><span class="votes">soma dos estados</span></td><td class="right"><span class="cand">${r.b} <span class="party">(${r.bp})</span></span><span class="pct">${nf.format(r.bv)}</span><span class="votes">soma dos estados</span></td></tr>`}).join("")}</tbody></table><div class="regional-note">2022 → 2026: campo petista <b>${signed(d.deltaA)} votos (${pc(d.deltaAPct)})</b> · bolsonarismo <b>${signed(d.deltaB)} (${pc(d.deltaBPct)})</b>.</div>`;
+}
+function renderState(id){
+ let d=D[id],change=d["2026"].app-d["2022"].app;
+ info.innerHTML=`<div class="info-head"><div class="kicker">${d.regiao} · estado</div><div class="title">${d.nome}</div><div class="change">Campo petista, 2022 → 2026: ${pp(change)}</div></div>${stateTable(d)}`;
+}
+function renderRegion(name){
+ let d=regionData(name);
+ info.innerHTML=`<div class="info-head"><div class="kicker">Soma dos estados · região</div><div class="title">${name}</div><div class="change">Campo petista, 2022 → 2026: ${signed(d.deltaA)} votos (${pc(d.deltaAPct)})</div></div>${regionTable(d)}`;
+}
+function tipAt(html,x,y,shell){
+ tip.innerHTML=html; let w=390,h=255,p=10,left=x+14,top=y+14;
+ if(left+w>shell.width-p)left=x-w-14;if(top+h>shell.height-p)top=Math.max(p,shell.height-h-p);
+ tip.style.left=Math.max(p,left)+"px";tip.style.top=Math.max(p,top)+"px";tip.classList.add("show");
+}
+function showTipState(id,e){let d=D[id],c=d["2026"].app-d["2022"].app,s=e.currentTarget.closest(".map-shell").getBoundingClientRect();tipAt(`<div class="tiphead"><div class="tiptitle">${d.nome}</div><div class="tipsub">${d.regiao} · campo petista 2022→2026: ${pp(c)}</div></div>${stateTable(d)}`,e.clientX-s.left,e.clientY-s.top,s)}
+function showTipRegion(name,e){let d=regionData(name),s=e.currentTarget.closest(".map-shell").getBoundingClientRect();tipAt(`<div class="tiphead"><div class="tiptitle">${name}</div><div class="tipsub">Soma dos estados · campo petista 2022→2026: ${signed(d.deltaA)} (${pc(d.deltaAPct)})</div></div>${regionTable(d)}`,e.clientX-s.left,e.clientY-s.top,s)}
+function clearAllSelection(){
+ const paths=wrap.querySelectorAll("svg path");
+ paths.forEach(p=>p.classList.remove("region-active","active-focus","dimmed"));
+}
+function highlightState(id){
+ clearAllSelection();
+ const p=wrap.querySelector("#"+id);
+ if(p)p.classList.add("active-focus");
+}
+function highlightRegion(name){
+ clearAllSelection();
+ const ids=new Set(R[name]);
+ wrap.querySelectorAll("svg path").forEach(p=>{
+   const pid=(p.id||"").toLowerCase();
+   if(ids.has(pid)) p.classList.add("region-active");
+   else p.classList.add("dimmed");
+ });
+}
+function recolor(){
+ Object.keys(D).forEach(id=>{
+   let p=wrap.querySelector("#"+id); if(!p)return;
+   if(mode==="estado"){p.style.fill=colorState(D[id]["2026"].app-D[id]["2022"].app)}
+   else{let rd=regionData(D[id].regiao);p.style.fill=colorRegion(rd.deltaAPct)}
+ });
+ clearAllSelection();
+ metric.textContent=mode==="estado"?"Cor: variação do campo petista em pontos percentuais, 2022 → 2026":"Cor: variação no total de votos do campo petista, 2022 → 2026";
+ legendtitle.textContent=mode==="estado"?"Variação em pontos percentuais":"Variação do total de votos (%)";
+}
+document.querySelectorAll("#hnmap .switch button").forEach(b=>b.addEventListener("click",()=>{
+ mode=b.dataset.mode;document.querySelectorAll("#hnmap .switch button").forEach(x=>x.classList.toggle("on",x===b));tip.classList.remove("show");recolor();
+ info.innerHTML=`<div class="info-head"><div class="kicker">Comparativo</div><div class="title">${mode==="estado"?"Passe o mouse no mapa":"Passe o mouse em uma região"}</div><div class="change">${mode==="estado"?"No celular, toque no estado.":"No celular, toque em qualquer estado da região."}</div></div>`;
+}));
+fetch("https://cdn.jsdelivr.net/npm/@svg-maps/brazil@2.0.0/brazil.svg").then(r=>r.text()).then(svgText=>{
+ wrap.innerHTML=svgText;let svg=wrap.querySelector("svg");svg.removeAttribute("width");svg.removeAttribute("height");
+ Object.keys(D).forEach(id=>{let p=svg.querySelector("#"+id);if(!p)return;p.setAttribute("tabindex","0");
+   p.addEventListener("pointerenter",e=>{
+     if(mode==="estado"){highlightState(id);renderState(id);showTipState(id,e)}
+     else{let reg=D[id].regiao;highlightRegion(reg);renderRegion(reg);showTipRegion(reg,e)}
+   });
+   p.addEventListener("pointermove",e=>{
+     if(e.pointerType==="touch")return;
+     if(mode==="estado")showTipState(id,e); else showTipRegion(D[id].regiao,e)
+   });
+   p.addEventListener("pointerleave",e=>{
+     if(e.pointerType!=="touch")tip.classList.remove("show");
+   });
+   p.addEventListener("click",e=>{
+     e.preventDefault();
+     if(mode==="estado"){highlightState(id);renderState(id);}
+     else{let reg=D[id].regiao;highlightRegion(reg);renderRegion(reg);}
+   });
+   p.addEventListener("focus",()=>{
+     if(mode==="estado"){highlightState(id);renderState(id);}
+     else{highlightRegion(D[id].regiao);renderRegion(D[id].regiao);}
+   });
+ });
+ recolor();
+}).catch(()=>{wrap.innerHTML='<div class="loading"><b>Não foi possível carregar o mapa.</b><br>Verifique se o WordPress permite conteúdo externo de cdn.jsdelivr.net.</div>'});
+})();
+</script>
 </body>
 </html>
