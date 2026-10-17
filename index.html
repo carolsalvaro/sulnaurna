@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="theme-color" content="#0e2d4f" />
-<title>Sul na Urna | Eleições 2026 — resultados, mapa e 2º turno</title>
-<meta name="description" content="O primeiro turno terminou, mas a missão de informar continua. Veja os eleitos em Santa Catarina, a representação do Sul e o caminho até o segundo turno das Eleições 2026." />
+<title>Sul na Urna | Eleições 2026 — resultados e 2º turno</title>
+<meta name="description" content="O primeiro turno terminou, mas a missão de informar continua. Veja os eleitos em Santa Catarina, a representação do Sul, as pesquisas do segundo turno e simule seu voto." />
 <style>
 :root{--navy:#0e2d4f;--navy2:#153f6e;--blue:#1e6fb8;--gold:#e3a82b;--gold2:#f2c14d;--ink:#14202b;--muted:#647080;--bg:#f3f6f9;--white:#fff;--green:#169b62;--line:#dfe6ed;--shadow:0 14px 42px rgba(15,45,79,.12)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 36px));margin:auto}
@@ -237,6 +237,34 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
   .section-nav a{padding:8px 13px;font-size:12px;min-height:38px}
 }
 
+
+/* Pesquisas do segundo turno */
+.poll-panel{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 10px 30px rgba(14,45,79,.06)}
+.poll-title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px}
+.poll-title-row h3{font-size:27px;line-height:1.12;margin:0 0 5px;color:var(--navy)}
+.poll-title-row p{margin:0;color:var(--muted);font-size:14px;max-width:780px}
+.poll-update{white-space:nowrap;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);background:#eef5fb;border-radius:999px;padding:7px 10px}
+.poll-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.poll-card{background:#f8fafc;border:1px solid var(--line);border-radius:15px;padding:15px;min-width:0}
+.poll-card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}
+.poll-card-head strong{font-size:14px;color:#11283f}.poll-card-head span{font-size:10px;font-weight:900;letter-spacing:.08em;color:var(--blue);background:#e9f2fa;border-radius:999px;padding:5px 7px;white-space:nowrap}
+.poll-values{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.poll-value{background:#fff;border:1px solid #e6ebf0;border-radius:11px;padding:10px}
+.poll-value b{display:block;font-size:24px;line-height:1;color:var(--navy);margin-bottom:5px}.poll-value small{display:block;color:var(--muted);font-size:11px;line-height:1.25}
+.poll-meta{font-size:10.5px;color:#6b7785;line-height:1.5;margin-top:11px}.poll-meta strong{color:#43505d}
+.poll-note{margin-top:16px;border-top:1px solid var(--line);padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.poll-note p{margin:0;color:var(--muted);font-size:12px;line-height:1.55;max-width:780px}
+.poll-mobile-hint{display:none}
+@media(max-width:1000px){.poll-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){
+  .poll-panel{padding:16px;margin-top:26px;border-radius:17px}
+  .poll-title-row{display:block}.poll-title-row h3{font-size:23px}.poll-update{display:inline-flex;margin-top:10px}
+  .poll-mobile-hint{display:block;font-size:11px;color:var(--muted);margin:0 0 10px}
+  .poll-grid{display:flex;overflow-x:auto;gap:10px;scroll-snap-type:x mandatory;padding:1px 2px 9px;margin-right:-16px;scrollbar-width:none}
+  .poll-grid::-webkit-scrollbar{display:none}.poll-card{flex:0 0 82%;scroll-snap-align:start}
+  .poll-note{display:block}.poll-note .btn{width:100%;margin-top:12px}
+}
+
 </style>
 </head>
 <body>
@@ -335,6 +363,32 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
         <h3>Flávio Bolsonaro</h3><p>PL</p>
       </article>
     </div>
+
+    <div class="poll-panel" id="pesquisas">
+      <div class="poll-title-row">
+        <div>
+          <h3>Pesquisas nacionais do 2º turno</h3>
+          <p>Levantamentos mais recentes que divulgaram o cenário em votos válidos. Os números são apresentados separadamente, com a margem de erro e o período de coleta informados por cada instituto.</p>
+        </div>
+        <div class="poll-update">Atualizado em 17/10</div>
+      </div>
+      <div class="poll-mobile-hint">Deslize para o lado para ver os levantamentos.</div>
+      <div class="poll-grid">
+        <article class="poll-card"><div class="poll-card-head"><strong>Veritá</strong><span>17 OUT</span></div><div class="poll-values"><div class="poll-value"><b>51,1%</b><small>Flávio Bolsonaro</small></div><div class="poll-value"><b>48,9%</b><small>Lula</small></div></div><div class="poll-meta"><strong>15.554 entrevistados</strong><br>Coleta: 12 a 16/10 • margem: ±1,0 p.p.<br>TSE: BR-01107/2026</div></article>
+        <article class="poll-card"><div class="poll-card-head"><strong>Ipespe/Abrapel</strong><span>17 OUT</span></div><div class="poll-values"><div class="poll-value"><b>51,2%</b><small>Flávio Bolsonaro</small></div><div class="poll-value"><b>48,8%</b><small>Lula</small></div></div><div class="poll-meta"><strong>1.500 entrevistados</strong><br>Coleta: 13 a 15/10 • margem: ±2,6 p.p.<br>TSE: BR-00223/2026</div></article>
+        <article class="poll-card"><div class="poll-card-head"><strong>Gerp</strong><span>16 OUT</span></div><div class="poll-values"><div class="poll-value"><b>52%</b><small>Flávio Bolsonaro</small></div><div class="poll-value"><b>48%</b><small>Lula</small></div></div><div class="poll-meta"><strong>2.400 entrevistados</strong><br>Coleta: 14 a 16/10 • margem: ±2,0 p.p.<br>TSE: BR-05187/2026</div></article>
+        <article class="poll-card"><div class="poll-card-head"><strong>PoderData/AYA</strong><span>16 OUT</span></div><div class="poll-values"><div class="poll-value"><b>50%</b><small>Flávio Bolsonaro</small></div><div class="poll-value"><b>50%</b><small>Lula</small></div></div><div class="poll-meta"><strong>3.000 entrevistados</strong><br>Coleta: 13 a 15/10 • margem: ±1,8 p.p.<br>TSE: BR-04258/2026</div></article>
+        <article class="poll-card"><div class="poll-card-head"><strong>CNT/MDA</strong><span>16 OUT</span></div><div class="poll-values"><div class="poll-value"><b>50,5%</b><small>Flávio Bolsonaro</small></div><div class="poll-value"><b>49,5%</b><small>Lula</small></div></div><div class="poll-meta"><strong>2.014 entrevistados</strong><br>Coleta: 13 a 15/10 • margem: ±2,2 p.p.<br>TSE: BR-00652/2026</div></article>
+        <article class="poll-card"><div class="poll-card-head"><strong>Futura/100% Cidades</strong><span>16 OUT</span></div><div class="poll-values"><div class="poll-value"><b>50,8%</b><small>Flávio Bolsonaro</small></div><div class="poll-value"><b>49,2%</b><small>Lula</small></div></div><div class="poll-meta"><strong>2.000 entrevistados</strong><br>Coleta: 14 a 15/10 • margem: ±2,2 p.p.<br>TSE: BR-03764/2026</div></article>
+        <article class="poll-card"><div class="poll-card-head"><strong>Datafolha</strong><span>15 OUT</span></div><div class="poll-values"><div class="poll-value"><b>51%</b><small>Flávio Bolsonaro</small></div><div class="poll-value"><b>49%</b><small>Lula</small></div></div><div class="poll-meta"><strong>2.520 entrevistados</strong><br>Coleta: 13 a 14/10 • margem: ±2,0 p.p.<br>TSE: BR-00466/2026</div></article>
+        <article class="poll-card"><div class="poll-card-head"><strong>Indexa/Broadcast</strong><span>15 OUT</span></div><div class="poll-values"><div class="poll-value"><b>51%</b><small>Flávio Bolsonaro</small></div><div class="poll-value"><b>49%</b><small>Lula</small></div></div><div class="poll-meta"><strong>2.000 entrevistados</strong><br>Coleta: 13 a 14/10 • margem: ±2,2 p.p.<br>TSE: BR-04629/2026</div></article>
+      </div>
+      <div class="poll-note">
+        <p>Pesquisas eleitorais registradas retratam a opinião dos entrevistados no período da coleta e não são previsão do resultado. Para facilitar a comparação, este quadro exibe apenas levantamentos recentes que publicaram percentuais de votos válidos.</p>
+        <a class="btn light" href="https://www.tse.jus.br/eleicoes/pesquisas-eleitorais" target="_blank" rel="noopener">Consultar pesquisas no TSE</a>
+      </div>
+    </div>
+
     <div style="text-align:center;margin-top:18px"><a class="btn dark" target="_blank" rel="noopener" href="https://hnnoticias.com.br/politica/flavio-bolsonaro-e-lula-disputarao-segundo-turno-para-a-presidencia/">Leia sobre o segundo turno no HN</a></div>
 
     <div class="urna-wrap">
