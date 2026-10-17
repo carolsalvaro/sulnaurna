@@ -1,6 +1,19 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VZYMP84YWY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'G-VZYMP84YWY');
+  window.trackEvent = window.trackEvent || function(name, params){
+    try { gtag('event', name, params || {}); } catch(e) {}
+  };
+</script>
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="theme-color" content="#0e2d4f" />
