@@ -36,10 +36,10 @@
       </div>
       <div class="notice">As contagens abaixo medem uso da ferramenta e escolhas simuladas. Elas não representam pesquisa eleitoral, amostra do eleitorado ou previsão de resultado.</div>
       <div class="sim-filters">
-        <div class="field"><label>Período</label><select id="simRange"><option value="today">Hoje</option><option value="7d" selected>Últimos 7 dias</option><option value="all">Todo período</option><option value="custom">Personalizado</option></select></div>
-        <div class="field hidden" id="simFromWrap"><label>De</label><input type="date" id="simFrom"></div>
-        <div class="field hidden" id="simToWrap"><label>Até</label><input type="date" id="simTo"></div>
-        <button class="btn secondary" id="refreshSimulator" type="button">Atualizar</button>
+        <div class="field"><label>Período</label><select id="simRange"><option value="today">Hoje</option><option value="7d">Últimos 7 dias</option><option value="all">Todo período</option><option value="custom" selected>Escolher intervalo</option></select></div>
+        <div class="field" id="simFromWrap"><label>Data inicial</label><input type="date" id="simFrom"></div>
+        <div class="field" id="simToWrap"><label>Data final</label><input type="date" id="simTo"></div>
+        <button class="btn secondary" id="refreshSimulator" type="button">Aplicar período</button>
       </div>
       <div class="metric-grid" id="simMetrics"></div>
       <div class="sim-subhead"><h3>Avanço pela sequência</h3></div>
@@ -57,5 +57,5 @@
 <script src="../data/seed-data.js"></script>
 <script src="../data/simulator-candidates.js?v=20260930"></script>
 <script src="../js/data-service.js?v=6.0"></script>
-<script src="admin.js?v=6.0"></script>
+<script src="admin.js?v=6.1"></script>
 </body></html>
