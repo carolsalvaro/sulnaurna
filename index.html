@@ -931,5 +931,16 @@ fetch("https://cdn.jsdelivr.net/npm/@svg-maps/brazil@2.0.0/brazil.svg").then(r=>
 })();
 </script>
 <script>(function(){const els=[...document.querySelectorAll('.reveal-on-scroll')];if(!('IntersectionObserver' in window)){els.forEach(el=>el.classList.add('reveal'));return;}const io=new IntersectionObserver((entries)=>{entries.forEach((entry)=>{if(entry.isIntersecting){entry.target.classList.add('reveal');io.unobserve(entry.target);}});},{threshold:.14,rootMargin:'0px 0px -40px 0px'});els.forEach(el=>io.observe(el));})();</script>
+<!-- Compartilhamento fixo no WhatsApp -->
+<style>
+.hn-share-fixed{position:fixed;right:18px;bottom:18px;z-index:9998;display:inline-flex;align-items:center;gap:9px;padding:12px 18px;border-radius:999px;background:#128c57;color:#fff!important;font:700 14px/1.2 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none!important;box-shadow:0 8px 24px rgba(0,0,0,.24);transition:transform .2s ease,background .2s ease}
+.hn-share-fixed:hover,.hn-share-fixed:focus-visible{background:#087b48;transform:translateY(-2px)}
+.hn-share-fixed svg{width:22px;height:22px;flex:none;fill:currentColor}
+@media(max-width:640px){.hn-share-fixed{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));padding:11px 15px;font-size:13px}}
+</style>
+<a class="hn-share-fixed" href="https://api.whatsapp.com/send?text=Confira%20a%20cobertura%20das%20Elei%C3%A7%C3%B5es%202026%20no%20Sul%20na%20Urna%2C%20do%20HN%20Not%C3%ADcias%3A%20https%3A%2F%2Fsulnaurna.hnnoticias.com.br%2F" target="_blank" rel="noopener noreferrer" aria-label="Compartilhar Sul na Urna no WhatsApp" onclick="if(window.trackEvent)window.trackEvent('share',{method:'WhatsApp',content_type:'website',item_id:'sul-na-urna'});">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.6 11.6 0 0 0 12.1 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.7 1.4 5.7 1.4 6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.5-8.3ZM12.1 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.6 9.6 0 0 1-1.5-5.1c0-5.5 4.4-9.9 9.9-9.9 2.6 0 5.1 1 7 2.9a9.8 9.8 0 0 1 2.9 7c0 5.4-4.4 9.8-9.9 9.8Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.1-.2.2-.4.2-.7.1-.4-.2-1.5-.6-2.8-1.8-1-1-1.7-2.2-1.9-2.6-.2-.4 0-.6.2-.8l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.3 3.4 1.5 3.6c.2.2 2.6 4 6.4 5.6.9.4 1.6.6 2.1.7.9.3 1.7.2 2.3.1.7-.1 1.8-.7 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.5Z"/></svg>
+<span>Compartilhe</span>
+</a>
 </body>
 </html>
