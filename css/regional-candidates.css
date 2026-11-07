@@ -46,3 +46,32 @@
  #candidatos-sul .sn-archive-search { width:100%; min-width:0; }
 }
 @media (max-width:400px) { #candidatos-sul .sn-region-tab { padding:12px 7px; } #candidatos-sul .sn-region-tab strong { font-size:14px; } #candidatos-sul .sn-region-tab small { font-size:11px; } }
+
+/* Resultado final por candidato — quadro 2026 */
+#candidatos-sul .sn-status-row { display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin:3px 0 18px; }
+#candidatos-sul .sn-status-label { font-size:13px; font-weight:800; color:#546b7f; margin-right:4px; }
+#candidatos-sul .sn-status-btn { padding:8px 12px; border:1px solid #d7e3ec; background:#f8fafc; color:#234f70; font-size:12px; font-weight:800; border-radius:9px; }
+#candidatos-sul .sn-status-btn[aria-pressed="true"] { border-color:#1e6fb8; background:#e6f1fa; color:#124d78; }
+#candidatos-sul .sn-candidate-card { align-items:flex-start; }
+#candidatos-sul .sn-candidate-image { width:70px; height:85px; }
+#candidatos-sul .sn-candidate-info { gap:6px; }
+#candidatos-sul .sn-candidate-head { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:7px; }
+#candidatos-sul .sn-candidate-head strong { font-size:15px; flex:1 1 130px; }
+#candidatos-sul .sn-situation { display:inline-flex; align-items:center; border-radius:999px; padding:5px 9px; font-size:11px; font-weight:900; white-space:nowrap; }
+#candidatos-sul .sn-situation-elected { background:#d8f5e6; color:#146944; border:1px solid #b9e6d0; }
+#candidatos-sul .sn-situation-alternate { background:#e1f0fc; color:#175582; border:1px solid #bad8ee; }
+#candidatos-sul .sn-situation-not-elected { background:#eef0f3; color:#596574; border:1px solid #dce1e7; }
+#candidatos-sul .sn-situation-pending { background:#faf0df; color:#7f5b1c; }
+#candidatos-sul .sn-candidate-bottom { display:flex; flex-wrap:wrap; align-items:center; gap:7px; }
+#candidatos-sul .sn-vote-result { color:#203c55; font-size:13px; line-height:1.2; }
+#candidatos-sul .sn-vote-result b { font-size:20px; letter-spacing:-.04em; font-weight:900; color:#0e2d4f; }
+#candidatos-sul .sn-annulled { font-size:10px; line-height:1.1; color:#8a4a13; border:1px solid #edcfaf; background:#fff3e5; padding:4px 6px; border-radius:6px; font-weight:800; }
+#candidatos-sul .sn-candidate-link { margin-top:2px; }
+@media(max-width:760px) {
+ #candidatos-sul .sn-candidate-head { align-items:center; }
+ #candidatos-sul .sn-candidate-image { width:65px; height:75px; }
+}
+@media(max-width:360px) {
+ #candidatos-sul .sn-candidate-head strong { flex-basis:100%; }
+ #candidatos-sul .sn-candidate-image { width:58px; height:67px; }
+}
