@@ -324,6 +324,7 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
 
 .post-election-south-card{display:flex;align-items:center;gap:20px;padding:28px 30px;border:1px solid #d5e1ed;border-left:6px solid #17618b;border-radius:18px;background:#fff;box-shadow:0 10px 24px rgba(12,44,73,.07);text-decoration:none!important;transition:transform .2s,box-shadow .2s}.post-election-south-card:hover{transform:translateY(-3px);box-shadow:0 16px 30px rgba(12,44,73,.13)}.post-election-south-icon{font-size:34px}.post-election-south-content{display:flex;flex:1;flex-direction:column;gap:7px;color:#173e5f}.post-election-south-content strong{font-size:27px}.post-election-south-content>span{font-weight:800;color:#146194;font-size:13px;letter-spacing:.04em}.post-election-south-content small{font-size:15px;color:#586e80}.post-election-south-cta{background:#f5d65e;color:#102f50;font-size:13px;font-weight:900;border-radius:11px;padding:15px 18px;white-space:nowrap}@media(max-width:700px){.post-election-south-card{flex-wrap:wrap;padding:20px;gap:12px}.post-election-south-content{flex-basis:calc(100% - 55px)}.post-election-south-content strong{font-size:23px}.post-election-south-cta{width:100%;text-align:center}}
 </style>
+<link rel="stylesheet" href="/css/regional-candidates.css">
 </head>
 <body>
 <header class="hero">
@@ -359,11 +360,46 @@ a.btn:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 11px 28px rgba(
 </div>
 
 
-<nav class="section-nav" aria-label="Navegação rápida do Sul na Urna"><div class="wrap section-nav-inner"><a href="https://hnnoticias.com.br/apuracao-hn-2026/#sn-sc">Presidente</a><a href="#sul-municipios">Sul de SC</a><a href="#comparativo-turnos">1º × 2º turno</a><a href="#mapa-brasil">Mapas históricos</a><a href="#todos-eleitos">Deputados eleitos</a><a href="#sul-eleito">Representação do Sul</a><a href="#analises-hn">Análises HN</a></div></nav>
+<nav class="section-nav" aria-label="Navegação rápida do Sul na Urna"><div class="wrap section-nav-inner"><a href="https://hnnoticias.com.br/apuracao-hn-2026/#sn-sc">Presidente</a><a href="#sul-municipios">Sul de SC</a><a href="#candidatos-sul">Candidatos do Sul</a><a href="#comparativo-turnos">1º × 2º turno</a><a href="#mapa-brasil">Mapas históricos</a><a href="#todos-eleitos">Deputados eleitos</a><a href="#sul-eleito">Representação do Sul</a><a href="#analises-hn">Análises HN</a></div></nav>
 
 <main>
 
 <section id="sul-municipios" class="post-election-section"><div class="wrap"><div class="section-title"><div class="kicker">Nosso foco é a região</div><h2>Como votou o Sul de Santa Catarina?</h2><p>Explore a votação de Criciúma e dos demais municípios da AMREC, AMESC e AMUREL em um só mapa.</p></div><a class="post-election-south-card" href="https://hnnoticias.com.br/apuracao-hn-2026/#sn-map" target="_blank" rel="noopener"><span class="post-election-south-icon" aria-hidden="true">📍</span><span class="post-election-south-content"><strong>Sul de Santa Catarina</strong><span>AMREC • AMESC • AMUREL</span><small>Confira os resultados por município e descubra como a região votou.</small></span><span class="post-election-south-cta">VER MAPA DO SUL ↗</span></a></div></section>
+
+<section id="candidatos-sul" aria-labelledby="sn-archive-title">
+ <div class="wrap">
+  <div class="sn-archive-intro">
+   <div class="kicker">Arquivo da campanha · Eleições 2026</div>
+   <h2 id="sn-archive-title">Os candidatos do Sul de Santa Catarina</h2>
+   <p>Relembre as candidaturas a deputado federal e estadual acompanhadas pelo Sul na Urna nas regiões da AMREC, AMESC e AMUREL. Navegue por região, cargo e nome; cada perfil leva ao registro oficial do TSE.</p>
+  </div>
+  <div class="sn-archive-stats" aria-label="Abrangência do arquivo">
+   <span class="sn-archive-stat"><strong>63</strong> candidaturas acompanhadas</span>
+   <span class="sn-archive-stat"><strong>3</strong> regiões</span>
+   <span class="sn-archive-stat"><strong>45</strong> municípios</span>
+  </div>
+  <div class="sn-archive-panel">
+   <div class="sn-region-tabs" role="group" aria-label="Escolher região">
+    <button class="sn-region-tab" type="button" data-sn-region="AMREC" aria-pressed="true"><strong>AMREC</strong><small>Região Carbonífera</small></button>
+    <button class="sn-region-tab" type="button" data-sn-region="AMESC" aria-pressed="false"><strong>AMESC</strong><small>Extremo Sul</small></button>
+    <button class="sn-region-tab" type="button" data-sn-region="AMUREL" aria-pressed="false"><strong>AMUREL</strong><small>Região de Laguna</small></button>
+   </div>
+   <div class="sn-region-toolbar">
+    <div class="sn-office-tabs" role="group" aria-label="Filtrar por cargo">
+     <button class="sn-office-tab" type="button" data-sn-office="todos" aria-pressed="true">Todos os cargos</button>
+     <button class="sn-office-tab" type="button" data-sn-office="federal" aria-pressed="false">Deputado federal</button>
+     <button class="sn-office-tab" type="button" data-sn-office="estadual" aria-pressed="false">Deputado estadual</button>
+    </div>
+    <input class="sn-archive-search" id="sn-candidate-search" type="search" placeholder="Buscar candidato..." aria-label="Buscar candidato por nome, partido ou número">
+   </div>
+   <div id="sn-result-context" class="sn-result-context" aria-live="polite">Carregando candidaturas...</div>
+   <div id="sn-candidate-grid" class="sn-candidate-grid"></div>
+   <p class="sn-archive-note"><strong>Nota editorial:</strong> este é o arquivo histórico das candidaturas selecionadas e acompanhadas pelo projeto durante a campanha de 2026. Não representa a lista integral de candidatos de Santa Catarina nem indica quem foi eleito. Os resultados oficiais devem ser consultados no TSE.</p>
+   <div class="sn-archive-actions"><a class="sn-archive-cta" href="https://hnnoticias.com.br/apuracao-hn-2026/#sn-map" target="_blank" rel="noopener noreferrer">Ver como o Sul votou ↗</a></div>
+  </div>
+ </div>
+</section>
+
 <section id="comparativo-turnos" class="post-election-section post-election-muted"><div class="wrap"><div class="section-title"><div class="kicker">Primeiro × segundo turno</div><h2>Compare o comportamento do eleitor</h2><p>Consulte os resultados dos dois turnos e explore as diferenças entre Brasil, Santa Catarina e os municípios da região. Os percentuais devem ser comparados sobre a mesma base de votos válidos.</p></div><div class="post-election-actions"><a class="post-election-button" href="https://hnnoticias.com.br/apuracao-hn-2026/#sn-sc" target="_blank" rel="noopener">EXPLORAR OS RESULTADOS ↗</a><a class="post-election-outline" href="#mapa-brasil">VER MAPAS HISTÓRICOS ↓</a></div></div></section>
 
 <section id="mapa-brasil">
@@ -943,5 +979,6 @@ fetch("https://cdn.jsdelivr.net/npm/@svg-maps/brazil@2.0.0/brazil.svg").then(r=>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.6 11.6 0 0 0 12.1 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.7 1.4 5.7 1.4 6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.5-8.3ZM12.1 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.6 9.6 0 0 1-1.5-5.1c0-5.5 4.4-9.9 9.9-9.9 2.6 0 5.1 1 7 2.9a9.8 9.8 0 0 1 2.9 7c0 5.4-4.4 9.8-9.9 9.8Zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.1-.2.2-.4.2-.7.1-.4-.2-1.5-.6-2.8-1.8-1-1-1.7-2.2-1.9-2.6-.2-.4 0-.6.2-.8l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.3 3.4 1.5 3.6c.2.2 2.6 4 6.4 5.6.9.4 1.6.6 2.1.7.9.3 1.7.2 2.3.1.7-.1 1.8-.7 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.5Z"/></svg>
 <span>Compartilhe</span>
 </a>
+<script src="/js/regional-candidates.js" defer></script>
 </body>
 </html>
